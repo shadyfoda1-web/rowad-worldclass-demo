@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>رواد العاصمة للتجارة العامة | Rowad Al Asema</title>
+<meta name="description" content="رواد العاصمة للتجارة العامة في دبي — استيراد، تصدير، توريد وتوزيع.">
+<meta name="theme-color" content="#050910">
+<style>
+:root{
+  --bg:#050910;--bg2:#071321;--card:#0b1b2d;--gold:#d6ae58;--gold2:#f1d79a;
+  --white:#f7f8fb;--muted:#aab6c7;--line:rgba(255,255,255,.11);--glass:rgba(8,21,38,.58);
+  --ease:cubic-bezier(.2,.75,.2,1)
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth;background:var(--bg)} body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Tahoma,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none} img,video{display:block;max-width:100%}.wrap{width:min(1280px,92vw);margin:auto}
+.noise{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E")}
+.progress{position:fixed;z-index:1200;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.04)}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#fff,var(--gold))}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.48}
+.loader{position:fixed;inset:0;z-index:2000;background:#04070c;display:grid;place-items:center;transition:opacity .65s,visibility .65s}
+.loader.hide{opacity:0;visibility:hidden}.loaderBox{text-align:center}.loaderBox img{width:88px;height:88px;object-fit:contain;background:#fff;border-radius:27px;padding:8px;margin:auto}
+.loaderLine{width:190px;height:2px;background:rgba(255,255,255,.12);margin:22px auto 0;overflow:hidden}.loaderLine i{display:block;width:0;height:100%;background:var(--gold);animation:load 1.5s forwards}@keyframes load{to{width:100%}}
+.cursor,.ring{position:fixed;pointer-events:none;z-index:1500;border-radius:50%;transform:translate(-50%,-50%)}.cursor{width:9px;height:9px;background:#fff;mix-blend-mode:difference}.ring{width:42px;height:42px;border:1px solid rgba(255,255,255,.45);transition:.12s}
+header{position:fixed;z-index:800;inset:0 0 auto;transition:.35s;background:linear-gradient(180deg,rgba(2,6,11,.78),transparent)}header.scrolled{background:rgba(4,9,16,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:54px;height:54px;object-fit:contain;background:#fff;padding:6px;border-radius:16px}.brand strong{display:block;font-size:16px}.brand small{display:block;color:var(--gold);font-size:9px;letter-spacing:1.7px;margin-top:5px;direction:ltr}.navlinks{display:flex;gap:24px;font-size:13px}.navlinks a{opacity:.75;transition:.25s}.navlinks a:hover{opacity:1;color:var(--gold2)}.actions{display:flex;gap:9px}
+.btn{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#fff;padding:11px 16px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;backdrop-filter:blur(12px);transition:.3s var(--ease);font-weight:700}.btn:hover{transform:translateY(-3px);border-color:rgba(214,174,88,.5)}.btn.gold{border:0;background:linear-gradient(135deg,#f3d990,#c99229);color:#07101b;box-shadow:0 12px 34px rgba(214,174,88,.2)}.lang{width:45px;padding-inline:0}
+
+.hero{height:100svh;min-height:760px;position:relative;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-5;filter:saturate(.85) contrast(1.12)}.hero:after{content:"";position:absolute;inset:0;z-index:-4;background:linear-gradient(90deg,rgba(3,7,13,.96) 0%,rgba(3,7,13,.72) 42%,rgba(3,7,13,.14) 72%,rgba(3,7,13,.58)),linear-gradient(180deg,rgba(0,0,0,.04),rgba(4,9,17,.94) 95%)}.heroGlow{position:absolute;z-index:-3;width:800px;height:800px;border-radius:50%;right:-280px;top:-300px;background:radial-gradient(circle,rgba(214,174,88,.18),transparent 68%);filter:blur(25px)}
+.routeSVG{position:absolute;inset:0;z-index:-2;opacity:.62}.routeSVG path{stroke-dasharray:8 18;animation:dash 18s linear infinite}@keyframes dash{to{stroke-dashoffset:-520}}
+.heroInner{width:100%;padding:145px 0 75px}.heroGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:50px;align-items:end}.eyebrow{display:inline-flex;gap:9px;align-items:center;padding:8px 13px;border-radius:999px;background:rgba(214,174,88,.09);border:1px solid rgba(214,174,88,.28);color:var(--gold2);font-size:12px}.eyebrow i{width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 18px var(--gold)}
+.hero h1{font-size:clamp(52px,7.1vw,110px);line-height:.94;letter-spacing:-3px;margin:22px 0 22px;max-width:900px}.hero h1 .line{display:block;overflow:hidden}.hero h1 .word{display:inline-block;transform:translateY(120%);animation:titleIn .9s var(--ease) forwards}.hero h1 .line:nth-child(2) .word{animation-delay:.12s}.hero h1 .line:nth-child(3) .word{animation-delay:.24s}@keyframes titleIn{to{transform:none}}
+.goldText{background:linear-gradient(90deg,#fff0c3,#c78f29,#fff0c3);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldflow 4.5s linear infinite}@keyframes goldflow{to{background-position:220% 0}}
+.lead{font-size:18px;line-height:2;color:#d0d8e3;max-width:710px}.heroCtas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.meta{display:flex;gap:25px;flex-wrap:wrap;color:#b5c0cf;font-size:12px;margin-top:34px}.meta span{display:flex;gap:8px;align-items:center}.meta i{width:7px;height:7px;border-radius:50%;border:1px solid var(--gold)}
+.heroSide{display:grid;gap:12px;justify-items:end}.glass{width:min(470px,100%);border:1px solid rgba(255,255,255,.13);background:linear-gradient(145deg,rgba(9,24,42,.62),rgba(255,255,255,.04));backdrop-filter:blur(20px);padding:22px;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform-style:preserve-3d}.glassTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.live{width:9px;height:9px;border-radius:50%;background:#62ef9a;box-shadow:0 0 0 0 rgba(98,239,154,.4);animation:pulse 2s infinite}@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(98,239,154,0)}}.statGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:18px;border:1px solid rgba(255,255,255,.075);border-radius:20px;background:rgba(255,255,255,.055);transition:.35s}.stat:hover{transform:translateY(-6px) scale(1.02);background:rgba(214,174,88,.09)}.stat b{font-size:30px}.stat small{display:block;margin-top:7px;color:#aeb9c8;line-height:1.55}
+.scrollCue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:11px;color:#a9b3c0;display:grid;place-items:center;gap:8px}.mouse{width:22px;height:34px;border:1px solid rgba(255,255,255,.35);border-radius:20px;position:relative}.mouse:after{content:"";width:3px;height:7px;border-radius:3px;background:#fff;position:absolute;top:7px;left:50%;transform:translateX(-50%);animation:wheel 1.5s infinite}@keyframes wheel{to{transform:translate(-50%,10px);opacity:0}}
+
+.ticker{overflow:hidden;background:#080f1a;border-block:1px solid rgba(255,255,255,.07);position:relative;z-index:3}.track{display:flex;width:max-content;gap:45px;padding:15px 0;direction:ltr;animation:ticker 23s linear infinite;font-size:12px;letter-spacing:.6px;color:#cad2dd}.track b{color:var(--gold)}@keyframes ticker{to{transform:translateX(-50%)}}
+section{padding:115px 0;position:relative;z-index:2}.head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:44px}.kicker{color:var(--gold);font-size:12px;letter-spacing:1.3px;font-weight:800}.head h2,.bigTitle{font-size:clamp(36px,5vw,68px);line-height:1.05;margin:10px 0 0;letter-spacing:-1.6px}.head p{max-width:540px;color:var(--muted);line-height:1.9;margin:0}.reveal{opacity:0;transform:translateY(50px) scale(.985);filter:blur(8px);transition:1s var(--ease)}.reveal.on{opacity:1;transform:none;filter:none}
+
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.service{min-height:300px;padding:26px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));position:relative;overflow:hidden;transition:.45s var(--ease)}.service:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(214,174,88,.11);filter:blur(30px);left:-100px;top:-100px;transition:.45s}.service:hover{transform:translateY(-12px);border-color:rgba(214,174,88,.38);box-shadow:0 24px 60px rgba(0,0,0,.28)}.service:hover:before{transform:translate(70px,60px) scale(1.2)}.icon{width:55px;height:55px;border-radius:18px;background:rgba(214,174,88,.11);border:1px solid rgba(214,174,88,.26);display:grid;place-items:center;font-size:24px;margin-bottom:35px}.service h3{font-size:21px}.service p{color:var(--muted);line-height:1.8;font-size:14px}
+
+.showreel{padding:0;height:90svh;min-height:680px;overflow:hidden;position:relative;background:#03060b}.showreel video{position:absolute;width:100%;height:115%;object-fit:cover;top:-7%;filter:saturate(.75) contrast(1.15)}.showreel:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,6,11,.92),rgba(3,6,11,.28),rgba(3,6,11,.83)),linear-gradient(180deg,transparent 45%,rgba(3,6,11,.75))}.showContent{position:relative;z-index:2;height:100%;display:flex;align-items:center}.showText{max-width:720px}.play{width:82px;height:82px;border-radius:50%;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:26px;margin-bottom:30px;position:relative;backdrop-filter:blur(12px)}.play:before,.play:after{content:"";position:absolute;inset:-14px;border:1px solid rgba(214,174,88,.3);border-radius:50%;animation:ring 2.3s infinite}.play:after{animation-delay:1.15s}@keyframes ring{to{transform:scale(1.55);opacity:0}}
+
+.horizontal{height:330vh;position:relative}.sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center}.htrack{display:flex;gap:28px;padding-inline:6vw;will-change:transform}.projectCard{width:min(72vw,850px);height:68vh;flex:0 0 auto;border-radius:34px;overflow:hidden;border:1px solid var(--line);position:relative;background:#0b1725;box-shadow:0 32px 90px rgba(0,0,0,.38)}.projectCard img{width:100%;height:100%;object-fit:cover;transition:1s var(--ease)}.projectCard:hover img{transform:scale(1.05)}.projectCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(3,8,15,.9))}.cardText{position:absolute;z-index:2;bottom:0;right:0;left:0;padding:30px}.cardText h3{font-size:30px;margin:0 0 10px}.cardText p{color:#c4cedb;max-width:600px;line-height:1.7}.metric{width:430px;height:68vh;flex:0 0 auto;border-radius:34px;border:1px solid var(--line);background:radial-gradient(circle at top right,rgba(214,174,88,.16),transparent 40%),linear-gradient(145deg,#0d2037,#07111e);padding:36px;display:flex;flex-direction:column;justify-content:space-between}.metric strong{font-size:72px;color:var(--gold2)}.metric p{color:var(--muted);line-height:1.8}
+
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.step{padding:27px 22px;border-top:1px solid rgba(214,174,88,.28);position:relative}.step em{color:var(--gold);font-size:11px;font-style:normal;letter-spacing:1px}.step h3{font-size:20px}.step p{font-size:14px;line-height:1.8;color:var(--muted)}
+.contact{padding:50px;border-radius:38px;border:1px solid var(--line);background:radial-gradient(circle at 0 0,rgba(214,174,88,.13),transparent 32%),linear-gradient(145deg,rgba(11,32,55,.9),rgba(6,16,28,.92));box-shadow:0 35px 90px rgba(0,0,0,.3)}.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:35px}.items{display:grid;gap:10px;margin-top:26px}.item{padding:17px 19px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.075)}.item small{display:block;color:var(--gold);margin-bottom:5px}.map{border-radius:28px;overflow:hidden;min-height:410px;border:1px solid var(--line)}.map iframe{border:0;width:100%;height:100%;filter:grayscale(.2) saturate(.8)}
+footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabbc;font-size:12px}.footer{display:flex;justify-content:space-between;gap:20px}
+.wa{position:fixed;z-index:900;left:24px;bottom:24px;width:61px;height:61px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;font-weight:900;box-shadow:0 15px 38px rgba(37,211,102,.32);animation:waf 2.5s infinite}@keyframes waf{50%{transform:translateY(-5px)}}
+
+@media(max-width:980px){.navlinks{display:none}.hero{height:auto;min-height:100svh}.heroGrid,.contactGrid{grid-template-columns:1fr}.heroSide{justify-items:start}.glass{width:100%}.services,.process{grid-template-columns:repeat(2,1fr)}.head{align-items:start;flex-direction:column}.horizontal{height:auto}.sticky{height:auto;position:relative}.htrack{display:grid;width:100%;padding:0 4vw}.projectCard,.metric{width:100%;height:520px}.cursor,.ring{display:none}}
+@media(max-width:620px){.brand strong{font-size:13px}.brand small{font-size:8px}.brand img{width:48px;height:48px}.actions .gold{display:none}.nav{height:76px}.heroInner{padding-top:130px}.hero h1{font-size:48px;letter-spacing:-1.8px}.lead{font-size:16px}.statGrid{grid-template-columns:1fr 1fr}.services,.process{grid-template-columns:1fr}.showreel{height:82svh}.projectCard,.metric{height:430px}.contact{padding:25px}.footer{flex-direction:column;text-align:center}.scrollCue{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader"><div class="loaderBox"><img src="assets/logo.jpg" alt=""><div class="loaderLine"><i></i></div></div></div>
+<div class="noise"></div><div class="progress"><i id="progress"></i></div><canvas id="particles"></canvas><div class="cursor" id="cursor"></div><div class="ring" id="ring"></div>
+
+<header id="header"><div class="wrap nav">
+  <div class="brand"><img src="assets/logo.jpg" alt="Rowad Al Asema"><div><strong data-ar="رواد العاصمة للتجارة العامة" data-en="Rowad Al Asema General Trading">رواد العاصمة للتجارة العامة</strong><small>ROWAD AL ASEMA GENERAL TRADING</small></div></div>
+  <nav class="navlinks"><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a><a href="#experience" data-ar="التجربة" data-en="Experience">التجربة</a><a href="#presence" data-ar="منظومتنا" data-en="Our Presence">منظومتنا</a><a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></nav>
+  <div class="actions"><button class="btn lang" id="lang">EN</button><a class="btn gold magnetic" href="mailto:info@rowadalasema.com" data-ar="ابدأ طلبك" data-en="Start Inquiry">ابدأ طلبك</a></div>
+</div></header>
+
+<main>
+<section class="hero">
+  <video autoplay muted loop playsinline poster="assets/hero-logistics.png"><source src="assets/rowad-showreel.mp4" type="video/mp4"></video>
+  <div class="heroGlow"></div>
+  <svg class="routeSVG" viewBox="0 0 1440 900" preserveAspectRatio="none"><path d="M-70 650 C260 410 410 790 700 520 S1120 250 1510 390" fill="none" stroke="rgba(241,215,154,.28)" stroke-width="1.3"/><path d="M100 160 C390 350 570 100 870 300 S1260 720 1510 560" fill="none" stroke="rgba(90,167,255,.17)" stroke-width="1"/></svg>
+  <div class="wrap heroInner"><div class="heroGrid">
+    <div>
+      <div class="eyebrow"><i></i><span data-ar="دبي • استيراد • تصدير • توريد • توزيع" data-en="Dubai • Import • Export • Sourcing • Distribution">دبي • استيراد • تصدير • توريد • توزيع</span></div>
+      <h1>
+        <span class="line"><span class="word" data-ar="نحرّك التجارة" data-en="We move trade">نحرّك التجارة</span></span>
+        <span class="line"><span class="word" data-ar="بسرعة" data-en="with speed">بسرعة</span></span>
+        <span class="line"><span class="word goldText" data-ar="السوق." data-en="of the market.">السوق.</span></span>
+      </h1>
+      <p class="lead" data-ar="رواد العاصمة للتجارة العامة تربط الفرص بالأسواق عبر منظومة مرنة للتوريد والاستيراد والتصدير والتوزيع من دبي إلى المنطقة."
+         data-en="Rowad Al Asema General Trading connects opportunities with markets through a flexible sourcing, import, export and distribution model from Dubai to the region.">رواد العاصمة للتجارة العامة تربط الفرص بالأسواق عبر منظومة مرنة للتوريد والاستيراد والتصدير والتوزيع من دبي إلى المنطقة.</p>
+      <div class="heroCtas"><a class="btn gold magnetic" href="#contact" data-ar="اطلب عرض سعر" data-en="Request a Quote">اطلب عرض سعر</a><a class="btn magnetic" href="#experience" data-ar="اكتشف التجربة" data-en="Explore Experience">اكتشف التجربة</a></div>
+      <div class="meta"><span><i></i><b data-ar="استجابة سريعة" data-en="Fast response">استجابة سريعة</b></span><span><i></i><b data-ar="دعم عربي وإنجليزي" data-en="Arabic & English">دعم عربي وإنجليزي</b></span><span><i></i><b data-ar="مقرنا دبي" data-en="Dubai based">مقرنا دبي</b></span></div>
+    </div>
+    <div class="heroSide">
+      <div class="glass tilt">
+        <div class="glassTop"><small data-ar="نظرة تشغيلية مباشرة" data-en="Live operating snapshot">نظرة تشغيلية مباشرة</small><span class="live"></span></div>
+        <div class="statGrid">
+          <div class="stat"><b class="counter" data-target="4">0</b><small data-ar="محاور تشغيل" data-en="Operating pillars">محاور تشغيل</small></div>
+          <div class="stat"><b class="counter" data-target="2">0</b><small data-ar="لغات خدمة" data-en="Service languages">لغات خدمة</small></div>
+          <div class="stat"><b>UAE</b><small data-ar="من دبي" data-en="Dubai base">من دبي</small></div>
+          <div class="stat"><b>24/7</b><small data-ar="تواصل رقمي" data-en="Digital contact">تواصل رقمي</small></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="scrollCue"><div class="mouse"></div><span>SCROLL TO EXPLORE</span></div>
+</section>
+
+<div class="ticker"><div class="track">
+<span><b>IMPORT</b> UAE MARKET</span><span><b>EXPORT</b> REGIONAL REACH</span><span><b>SOURCING</b> COMMERCIAL AGILITY</span><span><b>DISTRIBUTION</b> FLEXIBLE NETWORK</span>
+<span><b>IMPORT</b> UAE MARKET</span><span><b>EXPORT</b> REGIONAL REACH</span><span><b>SOURCING</b> COMMERCIAL AGILITY</span><span><b>DISTRIBUTION</b> FLEXIBLE NETWORK</span>
+</div></div>
+
+<section id="services"><div class="wrap">
+<div class="head reveal"><div><div class="kicker" data-ar="ما الذي نفعله" data-en="WHAT WE DO">ما الذي نفعله</div><h2 data-ar="من الطلب إلى السوق،<br>بمسار واحد." data-en="From request to market,<br>one clear path.">من الطلب إلى السوق،<br>بمسار واحد.</h2></div><p data-ar="نعمل بمنهج تجاري مرن يجعل كل خطوة واضحة، سريعة وقابلة للتكيف مع احتياجات السوق." data-en="A flexible commercial approach designed to keep every step clear, fast and adaptable to market needs.">نعمل بمنهج تجاري مرن يجعل كل خطوة واضحة، سريعة وقابلة للتكيف مع احتياجات السوق.</p></div>
+<div class="services">
+<article class="service reveal"><div class="icon">↗</div><h3 data-ar="الاستيراد" data-en="Import">الاستيراد</h3><p data-ar="ربط احتياجات السوق بالمصادر المناسبة وإدارة دورة التوريد بكفاءة." data-en="Connecting market demand with suitable sources and efficient procurement cycles.">ربط احتياجات السوق بالمصادر المناسبة وإدارة دورة التوريد بكفاءة.</p></article>
+<article class="service reveal"><div class="icon">↘</div><h3 data-ar="التصدير" data-en="Export">التصدير</h3><p data-ar="فتح مسارات جديدة للمنتجات نحو أسواق وفرص قابلة للنمو." data-en="Opening new routes for products toward scalable markets and opportunities.">فتح مسارات جديدة للمنتجات نحو أسواق وفرص قابلة للنمو.</p></article>
+<article class="service reveal"><div class="icon">⌁</div><h3 data-ar="التوريد" data-en="Sourcing">التوريد</h3><p data-ar="حلول توريد مرنة عبر قطاعات متعددة مع استجابة سريعة للطلبات." data-en="Flexible sourcing across multiple sectors with fast response to requests.">حلول توريد مرنة عبر قطاعات متعددة مع استجابة سريعة للطلبات.</p></article>
+<article class="service reveal"><div class="icon">◎</div><h3 data-ar="التوزيع" data-en="Distribution">التوزيع</h3><p data-ar="تنسيق حركة المنتجات بما يخدم العميل والسوق بصورة عملية." data-en="Coordinating product movement in a practical, market-focused way.">تنسيق حركة المنتجات بما يخدم العميل والسوق بصورة عملية.</p></article>
+</div></div></section>
+
+<section class="showreel" id="experience">
+<video autoplay muted loop playsinline poster="assets/office-warehouse.png"><source src="assets/rowad-showreel.mp4" type="video/mp4"></video>
+<div class="wrap showContent"><div class="showText reveal"><div class="play">▶</div><div class="kicker" data-ar="تجربة سينمائية" data-en="CINEMATIC BRAND EXPERIENCE">تجربة سينمائية</div><h2 class="bigTitle" data-ar="الموقع لا يعرض الشركة فقط.<br>بل يجعلك تشعر بحركتها." data-en="The website doesn’t only show the company.<br>It makes you feel its movement.">الموقع لا يعرض الشركة فقط.<br>بل يجعلك تشعر بحركتها.</h2></div></div>
+</section>
+
+<section class="horizontal" id="presence">
+<div class="sticky"><div class="htrack" id="htrack">
+  <div class="projectCard"><img src="assets/office-warehouse.png" alt=""><div class="cardText"><h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3><p data-ar="هوية متماسكة بين الإدارة والعمليات تعكس الاحتراف والتنظيم." data-en="A consistent identity across administration and operations.">هوية متماسكة بين الإدارة والعمليات تعكس الاحتراف والتنظيم.</p></div></div>
+  <div class="metric"><div><div class="kicker">DUBAI</div><strong>360°</strong></div><div><h3 data-ar="رؤية تجارية متكاملة" data-en="Integrated commercial view">رؤية تجارية متكاملة</h3><p data-ar="من أول تواصل إلى التوريد والتوزيع، كل خطوة ضمن تجربة واحدة متصلة." data-en="From first contact to sourcing and distribution, every step belongs to one connected experience.">من أول تواصل إلى التوريد والتوزيع، كل خطوة ضمن تجربة واحدة متصلة.</p></div></div>
+  <div class="projectCard"><img src="assets/hero-logistics.png" alt=""><div class="cardText"><h3 data-ar="دبي بوابتنا للحركة" data-en="Dubai is our gateway">دبي بوابتنا للحركة</h3><p data-ar="موقع استراتيجي داخل سوق سريع ومترابط إقليميًا وعالميًا." data-en="A strategic base inside a fast, regionally and globally connected market.">موقع استراتيجي داخل سوق سريع ومترابط إقليميًا وعالميًا.</p></div></div>
+  <div class="metric"><div><div class="kicker">ROWAD</div><strong>∞</strong></div><div><h3 data-ar="مرونة بلا قالب ثابت" data-en="Built for flexibility">مرونة بلا قالب ثابت</h3><p data-ar="نكيّف الحل التجاري مع طبيعة الطلب بدل فرض مسار واحد على كل عميل." data-en="We adapt the commercial solution to the request instead of forcing one rigid path.">نكيّف الحل التجاري مع طبيعة الطلب بدل فرض مسار واحد على كل عميل.</p></div></div>
+</div></div>
+</section>
+
+<section><div class="wrap"><div class="head reveal"><div><div class="kicker" data-ar="كيف نعمل" data-en="HOW WE WORK">كيف نعمل</div><h2 data-ar="أربع خطوات.<br>صفر تعقيد." data-en="Four steps.<br>Zero complexity.">أربع خطوات.<br>صفر تعقيد.</h2></div></div>
+<div class="process">
+<div class="step reveal"><em>01</em><h3 data-ar="نفهم" data-en="Understand">نفهم</h3><p data-ar="نحدد احتياجك والمنتج والسوق." data-en="We define your need, product and market.">نحدد احتياجك والمنتج والسوق.</p></div>
+<div class="step reveal"><em>02</em><h3 data-ar="نصمم المسار" data-en="Define the path">نصمم المسار</h3><p data-ar="نختار الحل التجاري الأنسب." data-en="We select the right commercial route.">نختار الحل التجاري الأنسب.</p></div>
+<div class="step reveal"><em>03</em><h3 data-ar="ننفذ" data-en="Execute">ننفذ</h3><p data-ar="تنفيذ مرن وسريع وواضح." data-en="Flexible, fast and clear execution.">تنفيذ مرن وسريع وواضح.</p></div>
+<div class="step reveal"><em>04</em><h3 data-ar="نتابع" data-en="Support">نتابع</h3><p data-ar="تواصل مباشر حتى اكتمال العملية." data-en="Direct follow-up through completion.">تواصل مباشر حتى اكتمال العملية.</p></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap"><div class="contact reveal"><div class="contactGrid">
+<div><div class="kicker" data-ar="تواصل معنا" data-en="CONTACT">تواصل معنا</div><h2 class="bigTitle" data-ar="ابدأ المحادثة.<br>ونحن نحرّك الباقي." data-en="Start the conversation.<br>We’ll move the rest.">ابدأ المحادثة.<br>ونحن نحرّك الباقي.</h2>
+<div class="items"><div class="item"><small data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</small><b>info@rowadalasema.com</b><br><b>hr@rowadalasema.com</b></div><div class="item"><small data-ar="الهاتف الأرضي" data-en="Landline">الهاتف الأرضي</small><b dir="ltr">04 338 7935</b></div><div class="item"><small data-ar="العنوان" data-en="Address">العنوان</small><b>City Gate Building, Port Saeed, Deira, Dubai — M Floor, Office 04</b></div></div></div>
+<div class="map"><iframe src="https://www.google.com/maps?q=City%20Gate%20Building%20Port%20Saeed%20Deira%20Dubai&output=embed" loading="lazy"></iframe></div>
+</div></div></div></section>
+</main>
+
+<footer><div class="wrap footer"><span>© <span id="year"></span> Rowad Al Asema General Trading</span><span>Dubai, United Arab Emirates</span></div></footer>
+<a class="wa magnetic" href="mailto:info@rowadalasema.com">✉</a>
+
+<script>
+const $$=s=>document.querySelectorAll(s), $=s=>document.querySelector(s);
+window.addEventListener('load',()=>setTimeout(()=>$('#loader').classList.add('hide'),450));
+$('#year').textContent=new Date().getFullYear();
+
+let ar=true; $('#lang').onclick=()=>{ar=!ar;document.documentElement.lang=ar?'ar':'en';document.documentElement.dir=ar?'rtl':'ltr';document.body.classList.toggle('en',!ar);$$('[data-ar]').forEach(el=>el.innerHTML=ar?el.dataset.ar:el.dataset.en);$('#lang').textContent=ar?'EN':'AR'};
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll?.('.counter').forEach(count)}}),{threshold:.14});
+$$('.reveal').forEach(el=>obs.observe(el));
+function count(el){if(el.dataset.done)return;el.dataset.done=1;let t=+el.dataset.target,s=performance.now();function f(n){let p=Math.min(1,(n-s)/900);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+$$('.counter').forEach(count);
+
+const head=$('#header'), prog=$('#progress'), htrack=$('#htrack'), horizontal=$('.horizontal');
+function scrollFX(){
+  let y=scrollY, max=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(max?y/max*100:0)+'%'; head.classList.toggle('scrolled',y>40);
+  if(innerWidth>980 && horizontal){
+    let r=horizontal.getBoundingClientRect(), total=horizontal.offsetHeight-innerHeight;
+    let p=Math.min(1,Math.max(0,-r.top/total));
+    let maxX=Math.max(0,htrack.scrollWidth-innerWidth+80);
+    htrack.style.transform=`translateX(${document.documentElement.dir==='rtl'?maxX*p:-maxX*p}px)`;
+  }
+}
+addEventListener('scroll',scrollFX,{passive:true});addEventListener('resize',scrollFX);scrollFX();
+
+const cur=$('#cursor'), ring=$('#ring');let mx=-100,my=-100,rx=-100,ry=-100;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function follow(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(follow)})();
+$$('a,button,.service,.stat').forEach(el=>{el.onmouseenter=()=>{ring.style.width='70px';ring.style.height='70px';ring.style.borderColor='rgba(214,174,88,.7)'};el.onmouseleave=()=>{ring.style.width='42px';ring.style.height='42px';ring.style.borderColor='rgba(255,255,255,.45)'}});
+
+$$('.magnetic').forEach(el=>el.addEventListener('mousemove',e=>{let r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform=`translate(${x*.16}px,${y*.16}px)`}));$$('.magnetic').forEach(el=>el.addEventListener('mouseleave',()=>el.style.transform=''));
+
+$$('.tilt').forEach(el=>{el.addEventListener('mousemove',e=>{let r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(1000px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-5px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
+
+// Lightweight particles
+const c=$('#particles'),ctx=c.getContext('2d');let pts=[];
+function resizeCanvas(){c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);pts=Array.from({length:Math.min(55,Math.floor(innerWidth/24))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.4+.3,v:(Math.random()*.18+.05)}))}
+function anim(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of pts){p.y-=p.v;if(p.y<-5){p.y=innerHeight+5;p.x=Math.random()*innerWidth}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(241,215,154,.28)';ctx.fill()}requestAnimationFrame(anim)}
+addEventListener('resize',resizeCanvas);resizeCanvas();anim();
+</script>
+</body>
+</html>
