@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رواد العاصمة للتجارة العامة | Rowad Al Asema General Trading</title>
+  <meta name="description" content="رواد العاصمة للتجارة العامة في دبي — توريد، استيراد، تصدير وتوزيع بحلول مرنة واحترافية." />
+  <meta name="theme-color" content="#061120" />
+  <style>
+    :root{
+      --bg:#061120;
+      --bg2:#0a1a2e;
+      --panel:rgba(14,30,51,.70);
+      --panel2:rgba(255,255,255,.055);
+      --gold:#d8b56a;
+      --gold2:#f5d48f;
+      --txt:#f7f4ec;
+      --muted:#b9c3cf;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 30px 80px rgba(0,0,0,.35);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Tahoma,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%,rgba(216,181,106,.09),transparent 28%),
+        radial-gradient(circle at 85% 30%,rgba(48,109,176,.12),transparent 28%),
+        linear-gradient(180deg,var(--bg),#07182a 52%,#061120);
+      color:var(--txt);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1180px,92vw);margin:auto}
+    .noise{
+      position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.055;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+    }
+    #cursorGlow{
+      position:fixed;width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle,rgba(216,181,106,.12),transparent 65%);
+      transform:translate(-50%,-50%);pointer-events:none;z-index:0;filter:blur(4px);
+      transition:opacity .3s ease;
+    }
+
+    /* Header */
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(3,13,26,.55);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:260px}
+    .brand img{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:16px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+    .brand strong{display:block;font-size:18px}
+    .brand span{display:block;color:var(--gold);font-size:11px;letter-spacing:1.8px;margin-top:5px;direction:ltr}
+    nav{display:flex;gap:24px;align-items:center;font-size:14px;color:#e9edf3}
+    nav a{position:relative;padding:8px 0}
+    nav a:after{content:"";position:absolute;right:0;bottom:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:.35s}
+    nav a:hover:after{width:100%}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      border:1px solid var(--line);background:rgba(255,255,255,.05);color:white;
+      padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer;
+      transition:.3s ease;display:inline-flex;align-items:center;gap:8px
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(216,181,106,.55)}
+    .btn.gold{background:linear-gradient(135deg,#f0cb73,#c99427);color:#07101d;border:0;box-shadow:0 12px 35px rgba(216,181,106,.22)}
+    .btn.gold:hover{box-shadow:0 16px 42px rgba(216,181,106,.33);transform:translateY(-3px)}
+    .lang{width:46px;justify-content:center;padding-inline:0}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;position:relative;isolation:isolate;overflow:hidden;
+      padding-top:86px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;z-index:-3;
+      background:url("assets/hero-logistics.png") center/cover no-repeat;
+      transform:scale(1.04);
+      animation:heroZoom 14s ease-in-out infinite alternate;
+    }
+    .hero:after{
+      content:"";position:absolute;inset:0;z-index:-2;
+      background:
+        linear-gradient(90deg,rgba(4,14,28,.93) 0%,rgba(4,14,28,.76) 42%,rgba(4,14,28,.30) 72%,rgba(4,14,28,.68) 100%),
+        linear-gradient(180deg,rgba(0,0,0,.18),rgba(4,14,28,.82));
+    }
+    @keyframes heroZoom{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+    .heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      border:1px solid rgba(216,181,106,.35);background:rgba(216,181,106,.11);
+      color:var(--gold2);padding:9px 14px;border-radius:999px;font-size:13px
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+    .hero h1{
+      font-size:clamp(44px,6vw,84px);line-height:1.05;margin:24px 0 20px;
+      max-width:780px;letter-spacing:-1px
+    }
+    .hero h1 .accent{
+      background:linear-gradient(90deg,#fff6dd,#d6ad59,#fff6dd);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      background-size:200% auto;animation:shine 4.5s linear infinite
+    }
+    @keyframes shine{to{background-position:200% center}}
+    .hero p{font-size:18px;line-height:2;color:#d8dee7;max-width:720px}
+    .heroCtas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .trustline{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;color:#c8d0da;font-size:13px}
+    .trustline span{display:flex;align-items:center;gap:9px}
+    .trustline i{width:8px;height:8px;border:1px solid var(--gold);border-radius:50%}
+
+    .heroCard{
+      position:relative;min-height:520px;border-radius:36px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(145deg,rgba(9,26,48,.72),rgba(11,18,31,.72));
+      box-shadow:var(--shadow);backdrop-filter:blur(12px);
+      transform-style:preserve-3d;
+    }
+    .heroCard:before{
+      content:"";position:absolute;inset:-1px;
+      background:linear-gradient(140deg,rgba(245,212,143,.18),transparent 25%,transparent 65%,rgba(96,169,255,.10));
+      pointer-events:none;
+    }
+    .orb{position:absolute;border-radius:50%;filter:blur(12px);opacity:.75;mix-blend-mode:screen}
+    .orb.one{width:210px;height:210px;background:rgba(218,178,87,.22);top:35px;right:20px;animation:float1 7s ease-in-out infinite}
+    .orb.two{width:170px;height:170px;background:rgba(73,139,218,.20);bottom:50px;left:25px;animation:float2 9s ease-in-out infinite}
+    @keyframes float1{50%{transform:translate(-18px,25px) scale(1.07)}}
+    @keyframes float2{50%{transform:translate(22px,-18px) scale(.95)}}
+    .glassStats{
+      position:absolute;inset:70px 45px auto 45px;display:grid;grid-template-columns:1fr 1fr;gap:14px;
+      transform:translateZ(40px)
+    }
+    .mini{
+      padding:24px;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(12px);min-height:140px
+    }
+    .mini strong{font-size:34px;display:block;margin-bottom:8px}
+    .mini small{color:#bfc7d1;line-height:1.7}
+    .heroBadge{
+      position:absolute;bottom:38px;right:44px;left:44px;padding:18px 22px;border-radius:22px;
+      background:linear-gradient(90deg,rgba(216,181,106,.16),rgba(255,255,255,.06));
+      border:1px solid rgba(216,181,106,.28);color:#f3e4bd
+    }
+
+    /* generic sections */
+    section{padding:110px 0;position:relative}
+    .sectionHead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
+    .kicker{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:1px}
+    h2{font-size:clamp(34px,4vw,56px);margin:10px 0 0;line-height:1.15}
+    .sectionHead p{max-width:520px;color:var(--muted);line-height:1.9;margin:0}
+
+    .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+    .reveal.show{opacity:1;transform:none}
+    .reveal.delay1{transition-delay:.12s}.reveal.delay2{transition-delay:.24s}.reveal.delay3{transition-delay:.36s}
+
+    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service{
+      position:relative;padding:28px;min-height:260px;border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.09);overflow:hidden;transition:.45s cubic-bezier(.2,.7,.2,1)
+    }
+    .service:hover{transform:translateY(-10px);border-color:rgba(216,181,106,.35);box-shadow:0 20px 55px rgba(0,0,0,.25)}
+    .service:after{
+      content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(216,181,106,.10);
+      left:-45px;top:-45px;filter:blur(2px);transition:.45s
+    }
+    .service:hover:after{transform:scale(1.5)}
+    .icon{
+      width:54px;height:54px;border-radius:18px;display:grid;place-items:center;margin-bottom:24px;
+      background:linear-gradient(145deg,rgba(245,212,143,.20),rgba(216,181,106,.06));
+      border:1px solid rgba(216,181,106,.28);font-size:26px
+    }
+    .service h3{font-size:21px;margin:0 0 12px}.service p{color:#bfc7d0;line-height:1.8;font-size:14px}
+
+    /* cinematic strip */
+    .cinema{
+      padding:0;
+      min-height:540px;
+      background:
+        linear-gradient(90deg,rgba(3,10,22,.92),rgba(3,10,22,.42),rgba(3,10,22,.92)),
+        url("assets/office-warehouse.png") center/cover no-repeat;
+      display:flex;align-items:center;overflow:hidden;
+      border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)
+    }
+    .cinema .content{max-width:760px}
+    .cinema h2{font-size:clamp(40px,5vw,68px)}
+    .play{
+      width:78px;height:78px;border-radius:50%;border:1px solid rgba(255,255,255,.24);
+      display:grid;place-items:center;background:rgba(255,255,255,.10);backdrop-filter:blur(14px);
+      margin-bottom:28px;position:relative;cursor:pointer;transition:.3s
+    }
+    .play:hover{transform:scale(1.08);background:rgba(216,181,106,.16)}
+    .play:before,.play:after{content:"";position:absolute;inset:-14px;border:1px solid rgba(216,181,106,.25);border-radius:50%;animation:pulse 2.2s infinite}
+    .play:after{animation-delay:1.1s}
+    @keyframes pulse{0%{transform:scale(.75);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+    .play span{font-size:26px;margin-right:4px}
+
+    .gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch}
+    .photoCard{
+      border-radius:30px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.10);
+      min-height:520px;box-shadow:var(--shadow);background:#0a1422
+    }
+    .photoCard img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+    .photoCard:hover img{transform:scale(1.04)}
+    .photoOverlay{position:absolute;inset:auto 0 0;padding:28px;background:linear-gradient(180deg,transparent,rgba(3,11,23,.92))}
+    .sideStack{display:grid;gap:24px}
+    .infoCard{
+      min-height:248px;padding:32px;border-radius:30px;background:linear-gradient(145deg,rgba(15,36,61,.85),rgba(8,20,35,.85));
+      border:1px solid rgba(255,255,255,.09);position:relative;overflow:hidden
+    }
+    .infoCard .big{font-size:50px;color:var(--gold);font-weight:800;margin-bottom:8px}
+    .infoCard p{color:#bdc7d2;line-height:1.9;margin:0}
+
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .step{padding:28px 22px;border-top:1px solid rgba(216,181,106,.25);position:relative}
+    .stepNum{font-size:12px;color:var(--gold);letter-spacing:1px}
+    .step h3{font-size:20px}.step p{color:var(--muted);font-size:14px;line-height:1.8}
+
+    .contactWrap{
+      padding:50px;border-radius:36px;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(216,181,106,.12),transparent 32%),
+        linear-gradient(145deg,rgba(12,34,60,.88),rgba(7,20,35,.88));
+      border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)
+    }
+    .contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+    .contactList{display:grid;gap:12px;margin-top:28px}
+    .contactItem{padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+    .contactItem small{display:block;color:var(--gold);margin-bottom:6px}
+    .map{
+      min-height:410px;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(145deg,#0e2037,#071525);position:relative
+    }
+    .map iframe{width:100%;height:100%;border:0;filter:saturate(.85) contrast(1.05)}
+
+    footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.07);color:#aeb8c4;font-size:13px}
+    .footerInner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .whatsapp{
+      position:fixed;left:24px;bottom:24px;z-index:120;width:62px;height:62px;border-radius:50%;
+      display:grid;place-items:center;background:#25D366;color:white;font-weight:800;box-shadow:0 14px 34px rgba(37,211,102,.28);
+      animation:waPulse 2.5s infinite
+    }
+    @keyframes waPulse{50%{transform:translateY(-4px);box-shadow:0 18px 42px rgba(37,211,102,.4)}}
+
+    .marquee{overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.025)}
+    .marqueeTrack{display:flex;width:max-content;gap:42px;padding:16px 0;animation:marquee 24s linear infinite;color:#d5dce4;font-size:13px;letter-spacing:.5px;direction:ltr}
+    .marqueeTrack span{display:flex;align-items:center;gap:12px}
+    .marqueeTrack b{color:var(--gold)}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    @media(max-width:980px){
+      nav{display:none}.brand{min-width:auto}.heroGrid,.gallery,.contactGrid{grid-template-columns:1fr}
+      .heroCard{min-height:420px}.services,.process{grid-template-columns:repeat(2,1fr)}
+      .hero{padding-top:110px}.sectionHead{align-items:start;flex-direction:column}
+    }
+    @media(max-width:640px){
+      .nav{height:76px}.brand img{width:50px;height:50px}.brand strong{font-size:15px}
+      .brand span{font-size:9px}.actions .gold{display:none}
+      .hero h1{font-size:44px}.hero p{font-size:16px}.heroGrid{gap:28px}
+      .heroCard{min-height:360px}.glassStats{inset:46px 22px auto;grid-template-columns:1fr 1fr}
+      .mini{padding:18px;min-height:120px}.mini strong{font-size:28px}.heroBadge{right:22px;left:22px}
+      section{padding:78px 0}.services,.process{grid-template-columns:1fr}
+      .photoCard{min-height:390px}.contactWrap{padding:26px}
+      .footerInner{flex-direction:column;text-align:center}
+      #cursorGlow{display:none}
+    }
+  </style>
+</head>
+<body>
+<div class="noise"></div>
+<div id="cursorGlow"></div>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="assets/logo.jpg" alt="Rowad Al Asema Logo">
+      <div>
+        <strong data-ar="رواد العاصمة للتجارة العامة" data-en="Rowad Al Asema General Trading">رواد العاصمة للتجارة العامة</strong>
+        <span>ROWAD AL ASEMA GENERAL TRADING</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
+      <a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a>
+      <a href="#showcase" data-ar="منظومتنا" data-en="Our Presence">منظومتنا</a>
+      <a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+    </nav>
+    <div class="actions">
+      <button class="btn lang" id="langBtn">EN</button>
+      <a class="btn gold" href="https://wa.me/971502455337" target="_blank" data-ar="واتساب مباشر" data-en="WhatsApp">واتساب مباشر</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container heroGrid">
+      <div class="reveal show">
+        <div class="eyebrow"><span class="dot"></span><span data-ar="دبي • تجارة عامة • استيراد • تصدير • توزيع" data-en="Dubai • General Trading • Import • Export • Distribution">دبي • تجارة عامة • استيراد • تصدير • توزيع</span></div>
+        <h1 data-ar="نحوّل حركة السوق إلى <span class='accent'>فرص قابلة للنمو</span>" data-en="We turn market movement into <span class='accent'>scalable opportunities</span>">
+          نحوّل حركة السوق إلى <span class="accent">فرص قابلة للنمو</span>
+        </h1>
+        <p data-ar="حلول تجارية مرنة تربط التوريد والاستيراد والتصدير والتوزيع بمنظومة واحدة سريعة، واضحة وقابلة للتوسع في السوق الإماراتي وخارجه."
+           data-en="Flexible trading solutions connecting sourcing, import, export and distribution in one fast, clear and scalable operating model across the UAE and beyond.">
+          حلول تجارية مرنة تربط التوريد والاستيراد والتصدير والتوزيع بمنظومة واحدة سريعة، واضحة وقابلة للتوسع في السوق الإماراتي وخارجه.
+        </p>
+        <div class="heroCtas">
+          <a class="btn gold" href="https://wa.me/971502455337" target="_blank" data-ar="اطلب عرض سعر" data-en="Request a Quote">اطلب عرض سعر</a>
+          <a class="btn" href="#showcase" data-ar="شاهد منظومتنا" data-en="Explore Our Presence">شاهد منظومتنا</a>
+        </div>
+        <div class="trustline">
+          <span><i></i><b data-ar="استجابة سريعة" data-en="Fast response">استجابة سريعة</b></span>
+          <span><i></i><b data-ar="توريد مرن" data-en="Flexible sourcing">توريد مرن</b></span>
+          <span><i></i><b data-ar="دعم ثنائي اللغة" data-en="Bilingual support">دعم ثنائي اللغة</b></span>
+        </div>
+      </div>
+
+      <div class="heroCard reveal delay1" id="tiltCard">
+        <div class="orb one"></div><div class="orb two"></div>
+        <div class="glassStats">
+          <div class="mini">
+            <strong class="counter" data-target="4">0</strong>
+            <small data-ar="محاور تشغيل أساسية: توريد، استيراد، تصدير وتوزيع" data-en="Core operating pillars: sourcing, import, export and distribution">محاور تشغيل أساسية</small>
+          </div>
+          <div class="mini">
+            <strong class="counter" data-target="2">0</strong>
+            <small data-ar="لغتان لخدمة العملاء والشركاء بكفاءة" data-en="Languages for efficient client and partner support">دعم عربي وإنجليزي</small>
+          </div>
+          <div class="mini">
+            <strong>UAE</strong>
+            <small data-ar="مقرنا في دبي، وبمنظور تجاري قابل للتوسع" data-en="Dubai-based with a scalable commercial outlook">مقرنا في دبي</small>
+          </div>
+          <div class="mini">
+            <strong>24/7</strong>
+            <small data-ar="قنوات تواصل رقمية مفتوحة للاستفسارات" data-en="Digital contact channels available for inquiries">قنوات تواصل رقمية</small>
+          </div>
+        </div>
+        <div class="heroBadge" data-ar="تجربة رقمية مصممة لتعكس الثقة، السرعة، والاحتراف في كل نقطة تواصل."
+             data-en="A digital presence designed to communicate trust, speed and professionalism at every touchpoint.">
+          تجربة رقمية مصممة لتعكس الثقة، السرعة، والاحتراف في كل نقطة تواصل.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marqueeTrack">
+      <span><b>IMPORT</b> UAE MARKET</span><span><b>EXPORT</b> REGIONAL REACH</span><span><b>DISTRIBUTION</b> FLEXIBLE NETWORK</span><span><b>SOURCING</b> COMMERCIAL AGILITY</span>
+      <span><b>IMPORT</b> UAE MARKET</span><span><b>EXPORT</b> REGIONAL REACH</span><span><b>DISTRIBUTION</b> FLEXIBLE NETWORK</span><span><b>SOURCING</b> COMMERCIAL AGILITY</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <div>
+          <div class="kicker" data-ar="حلولنا" data-en="WHAT WE DO">حلولنا</div>
+          <h2 data-ar="خدمات مصممة للحركة<br>لا للتعقيد" data-en="Services built for movement,<br>not complexity">خدمات مصممة للحركة<br>لا للتعقيد</h2>
+        </div>
+        <p data-ar="نركز على تبسيط دورة التجارة من الطلب وحتى التوريد والتوزيع، مع مرونة في التعامل مع احتياجات السوق."
+           data-en="We simplify the trading cycle from request to sourcing and distribution, with flexibility tailored to market needs.">
+          نركز على تبسيط دورة التجارة من الطلب وحتى التوريد والتوزيع.
+        </p>
+      </div>
+      <div class="services">
+        <article class="service reveal"><div class="icon">↗</div><h3 data-ar="الاستيراد" data-en="Import">الاستيراد</h3><p data-ar="دعم إجراءات الشراء والتوريد من الأسواق الخارجية وفق احتياجات النشاط." data-en="Support for sourcing and procurement from international markets based on business needs.">دعم إجراءات الشراء والتوريد من الأسواق الخارجية.</p></article>
+        <article class="service reveal delay1"><div class="icon">↘</div><h3 data-ar="التصدير" data-en="Export">التصدير</h3><p data-ar="حلول مرنة لتسويق وتصدير المنتجات إلى أسواق مناسبة وفرص قابلة للنمو." data-en="Flexible export solutions connecting products with suitable markets and scalable opportunities.">حلول مرنة لتسويق وتصدير المنتجات.</p></article>
+        <article class="service reveal delay2"><div class="icon">⌁</div><h3 data-ar="التوريد" data-en="Sourcing">التوريد</h3><p data-ar="استجابة لطلبات التوريد التجاري عبر شبكة مرنة من الخيارات والقطاعات." data-en="Commercial sourcing through a flexible network of options across multiple sectors.">استجابة لطلبات التوريد التجاري.</p></article>
+        <article class="service reveal delay3"><div class="icon">◎</div><h3 data-ar="التوزيع" data-en="Distribution">التوزيع</h3><p data-ar="تنسيق حركة المنتجات بما يخدم احتياجات السوق والعملاء بكفاءة تشغيلية." data-en="Coordinating product movement to serve market and client requirements efficiently.">تنسيق حركة المنتجات بكفاءة تشغيلية.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cinema" id="about">
+    <div class="container">
+      <div class="content reveal">
+        <div class="play"><span>▶</span></div>
+        <div class="kicker" data-ar="تجربة بصرية" data-en="CINEMATIC EXPERIENCE">تجربة بصرية</div>
+        <h2 data-ar="شركة تتحرك بإيقاع السوق" data-en="A company moving at market speed">شركة تتحرك بإيقاع السوق</h2>
+        <p data-ar="هذا القسم مصمم ليكون مكان الفيديو التعريفي لاحقًا. عند إضافة فيديو الشركة، يتحول مباشرة إلى Showreel سينمائي داخل الموقع."
+           data-en="This section is designed to become your corporate showreel. Once your company video is ready, it can be integrated here as a cinematic experience.">
+          هذا القسم مصمم ليكون مكان الفيديو التعريفي لاحقًا.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <div>
+          <div class="kicker" data-ar="منظومتنا" data-en="OUR PRESENCE">منظومتنا</div>
+          <h2 data-ar="هوية واحدة عبر المكتب والمخزن" data-en="One identity across office and warehouse">هوية واحدة عبر المكتب والمخزن</h2>
+        </div>
+        <p data-ar="مشهد بصري يربط الجانب الإداري بالجانب التشغيلي ويعطي الزائر إحساسًا واضحًا بهوية الشركة."
+           data-en="A visual narrative connecting administration and operations while reinforcing the company identity.">
+          مشهد بصري يربط الجانب الإداري بالجانب التشغيلي.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="photoCard reveal">
+          <img src="assets/office-warehouse.png" alt="Rowad Al Asema Office and Warehouse">
+          <div class="photoOverlay">
+            <h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3>
+            <p data-ar="صورة توضيحية تمثل بيئة العمل والعمليات اللوجستية." data-en="A visual representation of the company office and logistics operations.">صورة توضيحية تمثل بيئة العمل والعمليات اللوجستية.</p>
+          </div>
+        </div>
+        <div class="sideStack">
+          <div class="infoCard reveal delay1">
+            <div class="big">Dubai</div>
+            <h3 data-ar="موقع استراتيجي" data-en="Strategic location">موقع استراتيجي</h3>
+            <p data-ar="وجودنا في دبي يمنحنا وصولًا سريعًا إلى بيئة تجارية نشطة ومتنوعة." data-en="Our Dubai base provides direct access to a dynamic and diverse commercial environment.">وجودنا في دبي يمنحنا وصولًا سريعًا إلى بيئة تجارية نشطة.</p>
+          </div>
+          <div class="infoCard reveal delay2">
+            <div class="big">360°</div>
+            <h3 data-ar="رؤية تجارية متكاملة" data-en="Integrated commercial view">رؤية تجارية متكاملة</h3>
+            <p data-ar="من الطلب وحتى التوريد والتوزيع، نركز على وضوح المسار وسرعة التنفيذ." data-en="From inquiry to sourcing and distribution, we focus on clarity and speed of execution.">من الطلب وحتى التوريد والتوزيع، نركز على وضوح المسار.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="sectionHead reveal">
+        <div>
+          <div class="kicker" data-ar="كيف نعمل" data-en="HOW WE WORK">كيف نعمل</div>
+          <h2 data-ar="مسار واضح من أول تواصل" data-en="A clear path from first contact">مسار واضح من أول تواصل</h2>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step reveal"><div class="stepNum">01</div><h3 data-ar="فهم الطلب" data-en="Understand">فهم الطلب</h3><p data-ar="نراجع احتياج العميل وطبيعة المنتج والسوق المستهدف." data-en="We review the client's need, product type and target market.">نراجع احتياج العميل وطبيعة المنتج.</p></div>
+        <div class="step reveal delay1"><div class="stepNum">02</div><h3 data-ar="تحديد الحل" data-en="Define">تحديد الحل</h3><p data-ar="نحدد مسار التوريد أو الاستيراد أو التوزيع الأنسب." data-en="We define the most suitable sourcing, import or distribution path.">نحدد المسار التجاري الأنسب.</p></div>
+        <div class="step reveal delay2"><div class="stepNum">03</div><h3 data-ar="تنفيذ مرن" data-en="Execute">تنفيذ مرن</h3><p data-ar="ننسق التنفيذ بخطوات عملية قابلة للتكيف مع المستجدات." data-en="We coordinate execution through practical steps that adapt to changing requirements.">ننسق التنفيذ بخطوات عملية مرنة.</p></div>
+        <div class="step reveal delay3"><div class="stepNum">04</div><h3 data-ar="متابعة وتواصل" data-en="Support">متابعة وتواصل</h3><p data-ar="قنوات تواصل واضحة لضمان سرعة الرد والمتابعة." data-en="Clear communication channels support fast response and follow-up.">قنوات تواصل واضحة لضمان سرعة الرد.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contactWrap reveal">
+        <div class="contactGrid">
+          <div>
+            <div class="kicker" data-ar="تواصل معنا" data-en="CONTACT">تواصل معنا</div>
+            <h2 data-ar="ابدأ المحادثة، واترك الباقي علينا" data-en="Start the conversation. We’ll handle the rest.">ابدأ المحادثة، واترك الباقي علينا</h2>
+            <div class="contactList">
+              <div class="contactItem"><small data-ar="الهاتف / واتساب" data-en="Phone / WhatsApp">الهاتف / واتساب</small><b dir="ltr">+971 50 245 5337</b></div>
+              <div class="contactItem"><small data-ar="الهاتف الأرضي" data-en="Landline">الهاتف الأرضي</small><b dir="ltr">04 338 7935</b></div>
+              <div class="contactItem"><small data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</small><b>info@rowadalasema.com</b><br><b>hr@rowadalasema.com</b></div>
+              <div class="contactItem"><small data-ar="العنوان" data-en="Address">العنوان</small><b data-ar="City Gate Building, Port Saeed, Deira, Dubai — M Floor, Office 04" data-en="City Gate Building, Port Saeed, Deira, Dubai — M Floor, Office 04">City Gate Building, Port Saeed, Deira, Dubai — M Floor, Office 04</b></div>
+            </div>
+          </div>
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=City%20Gate%20Building%20Port%20Saeed%20Deira%20Dubai&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footerInner">
+    <span>© <span id="year"></span> Rowad Al Asema General Trading</span>
+    <span data-ar="تصميم تجريبي متقدم — جاهز للتخصيص والنشر" data-en="Advanced concept design — ready for customization and deployment">تصميم تجريبي متقدم — جاهز للتخصيص والنشر</span>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/971502455337" target="_blank" aria-label="WhatsApp">WA</a>
+
+<script>
+  const langBtn = document.getElementById('langBtn');
+  let isAr = true;
+  langBtn.addEventListener('click', () => {
+    isAr = !isAr;
+    document.documentElement.lang = isAr ? 'ar' : 'en';
+    document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-ar]').forEach(el => {
+      el.innerHTML = isAr ? el.dataset.ar : el.dataset.en;
+    });
+    langBtn.textContent = isAr ? 'EN' : 'AR';
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        if(entry.target.querySelectorAll){
+          entry.target.querySelectorAll('.counter').forEach(startCounter);
+        }
+      }
+    });
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function startCounter(el){
+    if(el.dataset.done) return;
+    el.dataset.done = "1";
+    const target = Number(el.dataset.target || 0);
+    let value = 0;
+    const t0 = performance.now();
+    const duration = 900;
+    function tick(now){
+      const p = Math.min(1,(now-t0)/duration);
+      el.textContent = Math.floor(target * (1 - Math.pow(1-p,3)));
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const glow = document.getElementById('cursorGlow');
+  window.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  const tilt = document.getElementById('tiltCard');
+  tilt.addEventListener('mousemove', e => {
+    const r = tilt.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width - .5;
+    const y = (e.clientY-r.top)/r.height - .5;
+    tilt.style.transform = `perspective(1000px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
+  });
+  tilt.addEventListener('mouseleave',()=>tilt.style.transform='');
+
+  window.addEventListener('scroll',()=>{
+    const y = window.scrollY;
+    document.querySelector('.hero:before');
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
