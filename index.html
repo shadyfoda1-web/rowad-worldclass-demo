@@ -155,13 +155,104 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 .dubaiStatement{margin:24px auto 0;max-width:850px;color:#d8e0e9;font-size:17px;line-height:1.9}
 .filmLabels{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:22px}
 .filmLabels span{font-size:10px;letter-spacing:1.6px;border:1px solid rgba(255,255,255,.12);background:rgba(4,10,18,.45);padding:7px 10px;border-radius:999px;color:#d2dae5;backdrop-filter:blur(10px)}
+
+/* V7 OVERLAP FIX */
+.cineStage .posterFallback{opacity:1;transition:opacity .6s ease}
+.cineStage.has-video .posterFallback{opacity:0}
+.dubaiFilm .cityCopy{padding:110px 20px 90px}
+.dubaiFilm .cityWord{position:relative;z-index:2}
+.dubaiFilm .citySub,.dubaiFilm .dubaiStatement,.dubaiFilm .filmLabels{position:relative;z-index:2}
+.dubaiFilm{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+@media(max-width:650px){
+  .dubaiFilm .cityCopy{padding:95px 18px 78px}
+  .dubaiFilm .cityWord{font-size:clamp(66px,22vw,112px)}
+  .dubaiFilm .citySub{font-size:27px;line-height:1.35}
+}
+
+/* ================= V8 MOTION EXPERIENCE ================= */
+:root{--mx:50%;--my:50%}
+body{cursor:default}
+.motionCursor{position:fixed;left:0;top:0;width:18px;height:18px;border:1px solid rgba(240,212,147,.7);border-radius:50%;pointer-events:none;z-index:5000;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .25s,height .25s,background .25s,border .25s;display:none}
+.motionCursor.big{width:54px;height:54px;background:rgba(212,170,80,.08);border-color:rgba(240,212,147,.28)}
+@media(pointer:fine){.motionCursor{display:block}}
+
+/* showroom upgrade */
+.showroom .stage{filter:drop-shadow(0 35px 70px rgba(0,0,0,.45))}
+.showroom .logo3d{animation:none;transform:translateX(-50%) rotateY(0deg) translateZ(30px)}
+.showroom #fxLogo{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:none}
+.showroom .logo3d img{transition:opacity .55s ease,filter .55s ease}
+.showroom.particles .logo3d img{opacity:.08;filter:blur(1px)}
+.stageAura{position:absolute;left:50%;top:82px;transform:translateX(-50%);width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(212,170,80,.15),transparent 63%);filter:blur(14px);animation:auraPulse 2.8s ease-in-out infinite}
+@keyframes auraPulse{50%{transform:translateX(-50%) scale(1.08);opacity:.65}}
+
+/* hero cinematic motion */
+.hero .wrap{position:relative}
+.heroCopy{transform-style:preserve-3d;will-change:transform}
+.heroVisual{transform-style:preserve-3d;will-change:transform}
+.heroVisual:before{content:"";position:absolute;inset:-1px;z-index:3;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx) var(--my),rgba(240,212,147,.22),transparent 28%);mix-blend-mode:screen;opacity:.8}
+.hero h1 span{display:block;transform-origin:bottom right}
+.hero h1 .wordIn{animation:wordIn .9s cubic-bezier(.16,.84,.25,1) both}
+@keyframes wordIn{from{opacity:0;transform:translateY(70px) rotateX(-18deg);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+.hero h1 span:nth-child(2){animation-delay:.12s}.hero h1 span:nth-child(3){animation-delay:.24s}
+
+/* cinematic transition panels */
+.sceneWipe{position:fixed;inset:0;z-index:2100;pointer-events:none;display:grid;grid-template-columns:repeat(5,1fr);visibility:hidden}
+.sceneWipe i{background:#06101d;transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.75,0,.2,1)}
+.sceneWipe.on{visibility:visible}.sceneWipe.on i{transform:scaleY(1)}
+.sceneWipe i:nth-child(2){transition-delay:.05s}.sceneWipe i:nth-child(3){transition-delay:.1s}.sceneWipe i:nth-child(4){transition-delay:.15s}.sceneWipe i:nth-child(5){transition-delay:.2s}
+
+/* scroll reveal variations */
+.reveal[data-motion="left"]{transform:translateX(-70px);filter:blur(8px)}
+.reveal[data-motion="right"]{transform:translateX(70px);filter:blur(8px)}
+.reveal[data-motion="scale"]{transform:scale(.86);filter:blur(8px)}
+.reveal[data-motion="flip"]{transform:perspective(800px) rotateX(16deg) translateY(45px);transform-origin:top}
+.reveal.on{transform:none!important}
+
+/* cards: 3D tilt + glow */
+.tilt{transform-style:preserve-3d;will-change:transform;transition:transform .22s ease,box-shadow .3s ease}
+.tilt .sectorBody,.tilt .productText,.tilt .infoCard{transform:translateZ(18px)}
+.tilt:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx) var(--my),rgba(240,212,147,.18),transparent 32%);opacity:0;transition:.25s}
+.tilt:hover:after{opacity:1}
+
+/* sticky storytelling */
+.story{padding:130px 0;background:#040b14;color:#fff}
+.storyGrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+.storySticky{position:sticky;top:120px;min-height:520px;border-radius:34px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#081522;box-shadow:var(--shadow)}
+.storySticky img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.storySticky img.alt{opacity:0;transform:scale(1.08)}
+.storySticky.altOn img.base{opacity:0;transform:scale(1.08)}.storySticky.altOn img.alt{opacity:1;transform:scale(1)}
+.storySticky:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(2,7,13,.92))}
+.storyBadge{position:absolute;z-index:2;bottom:24px;right:24px;left:24px;padding:18px;border:1px solid rgba(255,255,255,.1);background:rgba(5,13,23,.62);backdrop-filter:blur(16px);border-radius:20px}
+.storySteps{display:grid;gap:75px;padding:30px 0 130px}.storyStep{min-height:230px;border-right:1px solid rgba(212,170,80,.25);padding-right:28px;opacity:.3;transition:.5s}.storyStep.active{opacity:1;transform:translateX(-6px)}
+.storyStep b{font-size:11px;letter-spacing:2px;color:var(--gold)}.storyStep h3{font-size:clamp(30px,4vw,54px);margin:8px 0 14px}.storyStep p{color:#aeb9c8;line-height:1.9;max-width:620px}
+
+/* kinetic gallery */
+.motionGallery{padding:115px 0;background:var(--paper);color:var(--ink);overflow:hidden}
+.galleryRail{display:flex;gap:22px;width:max-content;direction:ltr;will-change:transform}
+.galleryCard{width:min(420px,78vw);height:520px;border-radius:30px;overflow:hidden;position:relative;flex:none;box-shadow:0 24px 70px rgba(20,34,52,.12)}
+.galleryCard img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.galleryCard:hover img{transform:scale(1.06)}
+.galleryCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(2,7,13,.88))}
+.galleryCard strong{position:absolute;z-index:2;bottom:24px;left:24px;right:24px;color:#fff;font-size:26px;letter-spacing:-.5px}
+
+/* animated stat strip */
+.motionStats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}.motionStat{padding:24px;border:1px solid rgba(255,255,255,.08);border-radius:22px;background:rgba(255,255,255,.035);text-align:center}.motionStat strong{display:block;font-size:36px;color:var(--gold2)}.motionStat small{color:#9fabb9}
+
+/* magnetic buttons */
+.magnetic{will-change:transform;transition:transform .18s ease}
+
+/* text masks */
+.maskLine{overflow:hidden;display:block}.maskLine > span{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,.84,.25,1)}.reveal.on .maskLine > span{transform:none}
+
+@media(max-width:950px){.storyGrid{grid-template-columns:1fr}.storySticky{position:relative;top:auto;min-height:420px}.storySteps{gap:30px;padding-bottom:30px}.motionStats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.motionCursor{display:none}.galleryCard{height:420px}.motionStats{grid-template-columns:1fr}.story{padding:80px 0}.storySticky{min-height:350px}}
+@media(prefers-reduced-motion:reduce){.sceneWipe,.motionCursor{display:none!important}.galleryRail{transform:none!important}}
 </style>
 </head>
-<body>
+<body><div class="motionCursor" id="motionCursor"></div><div class="sceneWipe" id="sceneWipe"><i></i><i></i><i></i><i></i><i></i></div>
 <div class="showroom" id="showroom">
   <button class="skipIntro" id="skipIntro">Skip</button>
   <div class="rig">
-    <div class="stage">
+    <div class="stage"><div class="stageAura"></div><canvas id="fxLogo"></canvas>
       <div class="spot"></div>
       <div class="logo3d" id="logo3d"><img src="assets/logo-icon.png" alt="Rowad Al Asema"></div>
       <div class="pedestal"></div>
@@ -176,21 +267,21 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 <header id="header"><div class="wrap nav">
   <div class="brand"><img src="assets/logo-icon.png" alt=""><div><strong data-ar="رواد العاصمة للتجارة العامة" data-en="Rowad Al Asema General Trading">رواد العاصمة للتجارة العامة</strong><small>ROWAD AL ASEMA GENERAL TRADING</small></div></div>
   <nav class="navlinks"><a href="#sectors" data-ar="القطاعات" data-en="Sectors">القطاعات</a><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a><a href="#knowledge" data-ar="مركز المعرفة" data-en="Knowledge Hub">مركز المعرفة</a><a href="#office" data-ar="الشركة" data-en="Company">الشركة</a><a href="#contact" data-ar="تواصل" data-en="Contact">تواصل</a></nav>
-  <div class="actions"><button class="btn lang" id="lang">EN</button><a class="btn gold" href="#quote" data-ar="اطلب عرض سعر" data-en="Request Quote">اطلب عرض سعر</a></div>
+  <div class="actions"><button class="btn lang" id="lang">EN</button><a class="btn gold magnetic" href="#quote" data-ar="اطلب عرض سعر" data-en="Request Quote">اطلب عرض سعر</a></div>
 </div></header>
 
 <main>
 <section class="hero">
   <video autoplay muted loop playsinline poster="assets/hero-logistics.png"><source src="assets/rowad-showreel.mp4" type="video/mp4"></video>
   <div class="wrap heroGrid">
-    <div class="reveal">
+    <div class="reveal heroCopy">
       <div class="eyebrow"><i></i><span data-ar="دبي • تجارة عامة • استيراد • تصدير • توزيع" data-en="Dubai • General Trading • Import • Export • Distribution">دبي • تجارة عامة • استيراد • تصدير • توزيع</span></div>
-      <h1><span data-ar="نربط المنتجات" data-en="We connect products">نربط المنتجات</span><span data-ar="بالأسواق" data-en="with markets">بالأسواق</span><span class="goldText" data-ar="والفرص." data-en="and opportunities.">والفرص.</span></h1>
+      <h1><span class="wordIn" data-ar="نربط المنتجات" data-en="We connect products">نربط المنتجات</span><span class="wordIn" data-ar="بالأسواق" data-en="with markets">بالأسواق</span><span class="goldText wordIn" data-ar="والفرص." data-en="and opportunities.">والفرص.</span></h1>
       <p class="lead" data-ar="رواد العاصمة للتجارة العامة توفر حلول توريد واستيراد وتصدير وتوزيع مرنة من دبي، مع محتوى تجاري يساعد العميل على فهم خيارات الشحن والمستندات وشروط التجارة قبل طلب العرض."
          data-en="Rowad Al Asema General Trading provides flexible sourcing, import, export and distribution solutions from Dubai, with useful trade guidance on shipping, documents and commercial terms before you request a quote.">
          رواد العاصمة للتجارة العامة توفر حلول توريد واستيراد وتصدير وتوزيع مرنة من دبي، مع محتوى تجاري يساعد العميل على فهم خيارات الشحن والمستندات وشروط التجارة قبل طلب العرض.
       </p>
-      <div class="heroCtas"><a class="btn gold" href="#quote" data-ar="ابدأ طلبك" data-en="Start Inquiry">ابدأ طلبك</a><a class="btn" href="#knowledge" data-ar="استفد من مركز المعرفة" data-en="Explore Trade Knowledge">استفد من مركز المعرفة</a></div>
+      <div class="heroCtas"><a class="btn gold magnetic" href="#quote" data-ar="ابدأ طلبك" data-en="Start Inquiry">ابدأ طلبك</a><a class="btn magnetic" href="#knowledge" data-ar="استفد من مركز المعرفة" data-en="Explore Trade Knowledge">استفد من مركز المعرفة</a></div>
       <div class="miniMeta"><span><i></i><b data-ar="قطاعات متنوعة" data-en="Multiple sectors">قطاعات متنوعة</b></span><span><i></i><b data-ar="حلول شحن مرنة" data-en="Flexible logistics">حلول شحن مرنة</b></span><span><i></i><b data-ar="عربي / English" data-en="Arabic / English">عربي / English</b></span></div>
     </div>
     <div class="heroVisual reveal">
@@ -207,7 +298,7 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 
 <section class="dubaiFilm" id="dubai">
   <div class="cineStage" id="cineStage">
-    <img class="posterFallback" src="assets/dubai-cinematic-poster.png" alt="Dubai cinematic backdrop">
+    <img class="posterFallback" src="assets/hero-logistics.png" alt="Dubai logistics cinematic backdrop">
     <video muted playsinline preload="metadata" data-label="BURJ KHALIFA"><source src="assets/dubai-burj.mp4" type="video/mp4"></video>
     <video muted playsinline preload="metadata" data-label="DUBAI MARINA"><source src="assets/dubai-marina.mp4" type="video/mp4"></video>
     <video muted playsinline preload="metadata" data-label="GLOBAL TRADE"><source src="assets/cargo-port.mp4" type="video/mp4"></video>
@@ -220,7 +311,7 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
     <div class="citySub" data-ar="مدينة الفرص. حيث يلتقي العالم." data-en="The city of opportunity. Where the world meets.">مدينة الفرص. حيث يلتقي العالم.</div>
     <p class="dubaiStatement" data-ar="مدينة عالمية تجمع الثقافات والأسواق والأفكار، ومنصة استراتيجية تربط التجارة بين الشرق والغرب."
        data-en="A global city where cultures, markets and ideas meet — a strategic platform connecting trade between East and West.">مدينة عالمية تجمع الثقافات والأسواق والأفكار، ومنصة استراتيجية تربط التجارة بين الشرق والغرب.</p>
-    <div class="filmLabels"><span>BURJ KHALIFA</span><span>DUBAI MARINA</span><span>PORT & CARGO</span><span>GLOBAL TRADE</span></div>
+    <div class="filmLabels"><span>BURJ KHALIFA</span><span>DUBAI MARINA</span><span>GLOBAL TRADE</span></div>
     <div class="cityLine"></div>
   </div>
   <div class="cineDots" id="cineDots"></div>
@@ -236,10 +327,10 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 <section class="light" id="sectors"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="القطاعات والمنتجات" data-en="SECTORS & PRODUCTS">القطاعات والمنتجات</div><h2 data-ar="مجالات متعددة.<br>منصة تجارية واحدة." data-en="Multiple sectors.<br>One trading platform.">مجالات متعددة.<br>منصة تجارية واحدة.</h2></div><p data-ar="أمثلة توضيحية على الفئات التي يمكن أن تخدمها شركة تجارة عامة. يتم تحديد المنتجات الفعلية والتوفر والمواصفات حسب طلب العميل." data-en="Illustrative categories a general trading company can serve. Actual products, availability and specifications are confirmed per inquiry.">أمثلة توضيحية على الفئات التي يمكن أن تخدمها شركة تجارة عامة. يتم تحديد المنتجات الفعلية والتوفر والمواصفات حسب طلب العميل.</p></div>
   <div class="sectorsGrid">
-    <article class="sector reveal"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="قطع غيار السيارات" data-en="Automotive Parts">قطع غيار السيارات</h3><p data-ar="فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة." data-en="Filters, consumables, automotive electrical parts, accessories and specification-based components.">فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة.</p><div class="chipRow"><span class="chip">Filters</span><span class="chip">Electrical</span><span class="chip">Accessories</span></div></div></article>
-    <article class="sector reveal"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الإلكترونيات والأجهزة" data-en="Electronics & Appliances">الإلكترونيات والأجهزة</h3><p data-ar="أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات." data-en="Electronic devices, accessories, home and technology solutions subject to market and compliance requirements.">أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات.</p><div class="chipRow"><span class="chip">Electronics</span><span class="chip">Accessories</span><span class="chip">Appliances</span></div></div></article>
-    <article class="sector reveal"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الأغذية والسلع الاستهلاكية" data-en="Food & FMCG">الأغذية والسلع الاستهلاكية</h3><p data-ar="منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية." data-en="Packaged foods and consumer goods, taking origin, registration and local requirements into account.">منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية.</p><div class="chipRow"><span class="chip">FMCG</span><span class="chip">Packaged Food</span><span class="chip">Consumer Goods</span></div></div></article>
-    <article class="sector reveal"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="مواد ومستلزمات البناء" data-en="Building Materials">مواد ومستلزمات البناء</h3><p data-ar="مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية." data-en="Project supplies, components and diversified sourcing based on specification and quantity.">مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية.</p><div class="chipRow"><span class="chip">Materials</span><span class="chip">Hardware</span><span class="chip">Project Supply</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="قطع غيار السيارات" data-en="Automotive Parts">قطع غيار السيارات</h3><p data-ar="فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة." data-en="Filters, consumables, automotive electrical parts, accessories and specification-based components.">فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة.</p><div class="chipRow"><span class="chip">Filters</span><span class="chip">Electrical</span><span class="chip">Accessories</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الإلكترونيات والأجهزة" data-en="Electronics & Appliances">الإلكترونيات والأجهزة</h3><p data-ar="أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات." data-en="Electronic devices, accessories, home and technology solutions subject to market and compliance requirements.">أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات.</p><div class="chipRow"><span class="chip">Electronics</span><span class="chip">Accessories</span><span class="chip">Appliances</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الأغذية والسلع الاستهلاكية" data-en="Food & FMCG">الأغذية والسلع الاستهلاكية</h3><p data-ar="منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية." data-en="Packaged foods and consumer goods, taking origin, registration and local requirements into account.">منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية.</p><div class="chipRow"><span class="chip">FMCG</span><span class="chip">Packaged Food</span><span class="chip">Consumer Goods</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="مواد ومستلزمات البناء" data-en="Building Materials">مواد ومستلزمات البناء</h3><p data-ar="مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية." data-en="Project supplies, components and diversified sourcing based on specification and quantity.">مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية.</p><div class="chipRow"><span class="chip">Materials</span><span class="chip">Hardware</span><span class="chip">Project Supply</span></div></div></article>
   </div>
 </div></section>
 
@@ -254,7 +345,7 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
       <div class="two"><div class="field"><label data-ar="الكمية" data-en="Quantity">الكمية</label><input id="qQty" placeholder="100 / 1 pallet / 1 container"></div><div class="field"><label data-ar="بلد التسليم" data-en="Destination">بلد التسليم</label><input id="qDest" placeholder="UAE / KSA / ..."></div></div>
       <div class="two"><div class="field"><label data-ar="الشحن المفضل" data-en="Preferred Shipping">الشحن المفضل</label><select id="qShip"><option>Not sure</option><option>Air</option><option>Sea - LCL</option><option>Sea - FCL</option></select></div><div class="field"><label data-ar="شرط التجارة إن وجد" data-en="Incoterm if known">شرط التجارة إن وجد</label><select id="qTerm"><option>Not sure</option><option>EXW</option><option>FOB</option><option>CIF</option><option>DDP</option></select></div></div>
       <div class="field"><label data-ar="تفاصيل إضافية" data-en="Additional Details">تفاصيل إضافية</label><textarea id="qNotes" placeholder="Brand, model, dimensions, origin preference, deadline..."></textarea></div>
-      <button type="submit" class="btn gold" data-ar="إرسال الطلب عبر واتساب" data-en="Send via WhatsApp">إرسال الطلب عبر واتساب</button>
+      <button type="submit" class="btn gold magnetic" data-ar="إرسال الطلب عبر واتساب" data-en="Send via WhatsApp">إرسال الطلب عبر واتساب</button>
       <div class="formResult" id="formResult"></div>
     </form>
   </div>
@@ -275,6 +366,19 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
   </div></div>
 </section>
 
+
+<section class="story" id="trade-story"><div class="wrap">
+  <div class="head reveal" data-motion="flip"><div><div class="kicker" data-ar="كيف تتحرك التجارة" data-en="HOW TRADE MOVES">كيف تتحرك التجارة</div><h2 data-ar="قصة واحدة.<br>أربع حركات رئيسية." data-en="One journey.<br>Four essential moves.">قصة واحدة.<br>أربع حركات رئيسية.</h2></div><p data-ar="هذا القسم يتحرك مع النزول: الصورة تبقى ثابتة بينما تتغير مراحل العملية أمام العميل." data-en="This section moves with the scroll: the visual stays pinned while each stage of the process takes over.">هذا القسم يتحرك مع النزول: الصورة تبقى ثابتة بينما تتغير مراحل العملية أمام العميل.</p></div>
+  <div class="storyGrid">
+    <div class="storySticky reveal" data-motion="scale" id="storyVisual"><img class="base" src="assets/logistics.png" alt="Global logistics"><img class="alt" src="assets/office-warehouse.png" alt="Warehouse operations"><div class="storyBadge"><b id="storyBadgeTitle">SOURCE</b><small id="storyBadgeText">Find the right product and supplier.</small></div></div>
+    <div class="storySteps">
+      <article class="storyStep active" data-step="0"><b>01 — SOURCE</b><h3 data-ar="نبحث عن المصدر المناسب." data-en="Find the right source.">نبحث عن المصدر المناسب.</h3><p data-ar="المواصفات والكمية وبلد المنشأ تحدد نقطة البداية. الهدف ليس مجرد مورد، بل مورد مناسب للطلب." data-en="Specification, quantity and origin define the starting point. The goal is not just a supplier, but the right supplier for the request.">المواصفات والكمية وبلد المنشأ تحدد نقطة البداية. الهدف ليس مجرد مورد، بل مورد مناسب للطلب.</p></article>
+      <article class="storyStep" data-step="1"><b>02 — VERIFY</b><h3 data-ar="نراجع قبل أن تتحرك البضاعة." data-en="Review before cargo moves.">نراجع قبل أن تتحرك البضاعة.</h3><p data-ar="سعر، مهلة، تعبئة، مستندات وفحص عند الحاجة. القرار الأقوى يبدأ بالمعلومات الصحيحة." data-en="Price, lead time, packing, documents and inspection where needed. Better decisions start with better information.">سعر، مهلة، تعبئة، مستندات وفحص عند الحاجة. القرار الأقوى يبدأ بالمعلومات الصحيحة.</p></article>
+      <article class="storyStep" data-step="2"><b>03 — MOVE</b><h3 data-ar="نختار مسار الشحن المناسب." data-en="Choose the right route.">نختار مسار الشحن المناسب.</h3><p data-ar="جوي، LCL أو FCL حسب الوقت والحجم والتكلفة. الحركة هنا جزء من القرار التجاري وليست خطوة منفصلة." data-en="Air, LCL or FCL depending on time, volume and cost. Logistics is part of the commercial decision, not a separate afterthought.">جوي، LCL أو FCL حسب الوقت والحجم والتكلفة. الحركة هنا جزء من القرار التجاري وليست خطوة منفصلة.</p></article>
+      <article class="storyStep" data-step="3"><b>04 — CONNECT</b><h3 data-ar="نصل المنتج بالسوق." data-en="Connect product to market.">نصل المنتج بالسوق.</h3><p data-ar="من دبي إلى وجهات متعددة، الهدف النهائي هو وصول المنتج بالمواصفات والمستندات والمسار المتفق عليه." data-en="From Dubai to multiple destinations, the goal is delivery with the agreed specification, documents and route.">من دبي إلى وجهات متعددة، الهدف النهائي هو وصول المنتج بالمواصفات والمستندات والمسار المتفق عليه.</p></article>
+    </div>
+  </div>
+</div></section>
 <section class="light" id="knowledge"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="مركز المعرفة التجارية" data-en="TRADE KNOWLEDGE HUB">مركز المعرفة التجارية</div><h2 data-ar="افهم الشروط قبل أن<br>تتخذ القرار." data-en="Understand the terms<br>before you decide.">افهم الشروط قبل أن<br>تتخذ القرار.</h2></div><p data-ar="معلومات تعليمية مبسطة تساعد العميل على قراءة عروض الموردين وفهم تكلفة ومسؤولية كل خيار. التفاصيل القانونية والجمركية تختلف حسب المنتج والدولة." data-en="Simple educational guidance to help clients read supplier offers and understand cost and responsibility. Legal and customs requirements vary by product and country.">معلومات تعليمية مبسطة تساعد العميل على قراءة عروض الموردين وفهم تكلفة ومسؤولية كل خيار. التفاصيل القانونية والجمركية تختلف حسب المنتج والدولة.</p></div>
   <div class="knowledge">
@@ -289,19 +393,21 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 <section class="light"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="اختيار طريقة الشحن" data-en="SHIPPING CHOICES">اختيار طريقة الشحن</div><h2 data-ar="ليس الأسرع دائمًا<br>هو الأفضل." data-en="The fastest option is not<br>always the best option.">ليس الأسرع دائمًا<br>هو الأفضل.</h2></div></div>
   <div class="compare">
-    <article class="compareCard reveal"><div class="icon">✈</div><h3 data-ar="الشحن الجوي" data-en="Air Freight">الشحن الجوي</h3><p data-ar="مناسب عادةً للشحنات العاجلة أو ذات القيمة العالية أو الحجم المحدود." data-en="Usually suitable for urgent, high-value or lower-volume shipments.">مناسب عادةً للشحنات العاجلة أو ذات القيمة العالية أو الحجم المحدود.</p><ul><li data-ar="زمن أسرع نسبيًا" data-en="Relatively faster transit">زمن أسرع نسبيًا</li><li data-ar="تكلفة أعلى لكل كجم غالبًا" data-en="Often higher cost per kg">تكلفة أعلى لكل كجم غالبًا</li><li data-ar="قيود على بعض أنواع البضائع" data-en="Restrictions for some cargo types">قيود على بعض أنواع البضائع</li></ul></article>
-    <article class="compareCard reveal"><div class="icon">▣</div><h3>Sea Freight — LCL</h3><p data-ar="مشاركة مساحة الحاوية مع شحنات أخرى عندما لا تحتاج حاوية كاملة." data-en="Sharing container space with other shipments when you do not need a full container.">مشاركة مساحة الحاوية مع شحنات أخرى عندما لا تحتاج حاوية كاملة.</p><ul><li data-ar="مفيد للكميات المتوسطة" data-en="Useful for medium volumes">مفيد للكميات المتوسطة</li><li data-ar="تكلفة أقل من الحاوية الكاملة في حالات معينة" data-en="Can cost less than a full container in some cases">تكلفة أقل من الحاوية الكاملة في حالات معينة</li><li data-ar="قد يحتاج وقت تجميع وفك تجميع" data-en="May require consolidation/deconsolidation time">قد يحتاج وقت تجميع وفك تجميع</li></ul></article>
-    <article class="compareCard reveal"><div class="icon">▤</div><h3>Sea Freight — FCL</h3><p data-ar="حاوية كاملة لشحنة واحدة، مناسبة للكميات الأكبر أو عندما تحتاج تحكمًا أفضل في المساحة." data-en="A full container for one shipment, useful for larger volumes or better space control.">حاوية كاملة لشحنة واحدة، مناسبة للكميات الأكبر أو عندما تحتاج تحكمًا أفضل في المساحة.</p><ul><li data-ar="مناسب للكميات الكبيرة" data-en="Suitable for larger volumes">مناسب للكميات الكبيرة</li><li data-ar="أقل مناولة مشتركة مع شحنات أخرى" data-en="Less shared handling with other cargo">أقل مناولة مشتركة مع شحنات أخرى</li><li data-ar="يحتاج حساب الاستفادة من حجم الحاوية" data-en="Requires checking container utilization">يحتاج حساب الاستفادة من حجم الحاوية</li></ul></article>
+    <article class="compareCard reveal tilt" data-motion="scale"><div class="icon">✈</div><h3 data-ar="الشحن الجوي" data-en="Air Freight">الشحن الجوي</h3><p data-ar="مناسب عادةً للشحنات العاجلة أو ذات القيمة العالية أو الحجم المحدود." data-en="Usually suitable for urgent, high-value or lower-volume shipments.">مناسب عادةً للشحنات العاجلة أو ذات القيمة العالية أو الحجم المحدود.</p><ul><li data-ar="زمن أسرع نسبيًا" data-en="Relatively faster transit">زمن أسرع نسبيًا</li><li data-ar="تكلفة أعلى لكل كجم غالبًا" data-en="Often higher cost per kg">تكلفة أعلى لكل كجم غالبًا</li><li data-ar="قيود على بعض أنواع البضائع" data-en="Restrictions for some cargo types">قيود على بعض أنواع البضائع</li></ul></article>
+    <article class="compareCard reveal tilt" data-motion="scale"><div class="icon">▣</div><h3>Sea Freight — LCL</h3><p data-ar="مشاركة مساحة الحاوية مع شحنات أخرى عندما لا تحتاج حاوية كاملة." data-en="Sharing container space with other shipments when you do not need a full container.">مشاركة مساحة الحاوية مع شحنات أخرى عندما لا تحتاج حاوية كاملة.</p><ul><li data-ar="مفيد للكميات المتوسطة" data-en="Useful for medium volumes">مفيد للكميات المتوسطة</li><li data-ar="تكلفة أقل من الحاوية الكاملة في حالات معينة" data-en="Can cost less than a full container in some cases">تكلفة أقل من الحاوية الكاملة في حالات معينة</li><li data-ar="قد يحتاج وقت تجميع وفك تجميع" data-en="May require consolidation/deconsolidation time">قد يحتاج وقت تجميع وفك تجميع</li></ul></article>
+    <article class="compareCard reveal tilt" data-motion="scale"><div class="icon">▤</div><h3>Sea Freight — FCL</h3><p data-ar="حاوية كاملة لشحنة واحدة، مناسبة للكميات الأكبر أو عندما تحتاج تحكمًا أفضل في المساحة." data-en="A full container for one shipment, useful for larger volumes or better space control.">حاوية كاملة لشحنة واحدة، مناسبة للكميات الأكبر أو عندما تحتاج تحكمًا أفضل في المساحة.</p><ul><li data-ar="مناسب للكميات الكبيرة" data-en="Suitable for larger volumes">مناسب للكميات الكبيرة</li><li data-ar="أقل مناولة مشتركة مع شحنات أخرى" data-en="Less shared handling with other cargo">أقل مناولة مشتركة مع شحنات أخرى</li><li data-ar="يحتاج حساب الاستفادة من حجم الحاوية" data-en="Requires checking container utilization">يحتاج حساب الاستفادة من حجم الحاوية</li></ul></article>
   </div>
 </div></section>
 
+
+<section class="motionGallery"><div class="wrap"><div class="head reveal" data-motion="right"><div><div class="kicker" data-ar="مشاهد من عالم التجارة" data-en="TRADE IN MOTION">مشاهد من عالم التجارة</div><h2 data-ar="المنتج يتحرك.<br>والسوق لا ينتظر." data-en="Products move.<br>Markets do not wait.">المنتج يتحرك.<br>والسوق لا ينتظر.</h2></div><p data-ar="معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة." data-en="A scroll-driven gallery that adds cinematic motion without trapping the user in an awkward horizontal scroll.">معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة.</p></div></div><div class="galleryRail" id="galleryRail"><article class="galleryCard"><img src="assets/logistics.png" alt="Dubai logistics"><strong>DUBAI / GLOBAL TRADE</strong></article><article class="galleryCard"><img src="assets/products-collage.png" alt="Products"><strong>PRODUCT / SOURCING</strong></article><article class="galleryCard"><img src="assets/office-warehouse.png" alt="Warehouse"><strong>WAREHOUSE / DISTRIBUTION</strong></article><article class="galleryCard"><img src="assets/sectors-collage.png" alt="Sectors"><strong>SECTORS / OPPORTUNITY</strong></article></div></section>
 <section id="office"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="من نحن" data-en="OUR PRESENCE">من نحن</div><h2 data-ar="وجود فعلي وهوية<br>واضحة في دبي." data-en="A real presence and<br>clear identity in Dubai.">وجود فعلي وهوية<br>واضحة في دبي.</h2></div><p data-ar="الموقع لا يكتفي بصور عامة؛ نعرض أيضًا بيئة المكتب والمخزن لإعطاء الزائر صورة أوضح عن هوية الشركة." data-en="The site goes beyond generic imagery and also presents the office and warehouse environment for a clearer company identity.">الموقع لا يكتفي بصور عامة؛ نعرض أيضًا بيئة المكتب والمخزن لإعطاء الزائر صورة أوضح عن هوية الشركة.</p></div>
   <div class="officeGrid">
-    <div class="officePhoto reveal"><img src="assets/office-warehouse.png" alt="Office and warehouse"><div class="officeCopy"><h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3><p data-ar="صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع." data-en="A visual representation of the office, warehouse and sourcing/distribution operations.">صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع.</p></div></div>
+    <div class="officePhoto reveal tilt" data-motion="left"><img src="assets/office-warehouse.png" alt="Office and warehouse"><div class="officeCopy"><h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3><p data-ar="صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع." data-en="A visual representation of the office, warehouse and sourcing/distribution operations.">صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع.</p></div></div>
     <div class="officeSide">
-      <div class="infoCard reveal"><strong>Dubai</strong><div><h3 data-ar="مركز تجاري ولوجستي" data-en="Commercial & logistics hub">مركز تجاري ولوجستي</h3><p data-ar="موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية." data-en="A location that supports access to suppliers, clients and regional shipping routes.">موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية.</p></div></div>
-      <div class="infoCard reveal"><strong>RFQ</strong><div><h3 data-ar="طلب عرض منظم" data-en="Structured RFQ">طلب عرض منظم</h3><p data-ar="نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة." data-en="We ask for clear specifications, quantity and destination so offers are practical and comparable.">نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة.</p></div></div>
+      <div class="infoCard reveal tilt" data-motion="right"><strong>Dubai</strong><div><h3 data-ar="مركز تجاري ولوجستي" data-en="Commercial & logistics hub">مركز تجاري ولوجستي</h3><p data-ar="موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية." data-en="A location that supports access to suppliers, clients and regional shipping routes.">موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية.</p></div></div>
+      <div class="infoCard reveal tilt" data-motion="right"><strong>RFQ</strong><div><h3 data-ar="طلب عرض منظم" data-en="Structured RFQ">طلب عرض منظم</h3><p data-ar="نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة." data-en="We ask for clear specifications, quantity and destination so offers are practical and comparable.">نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة.</p></div></div>
     </div>
   </div>
 </div></section>
@@ -309,10 +415,10 @@ footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.07);color:#9eabba;f
 <section class="light"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="مستندات شائعة" data-en="COMMON TRADE DOCUMENTS">مستندات شائعة</div><h2 data-ar="المستند الصحيح يوفر<br>وقتًا ومشكلات." data-en="The right document saves<br>time and problems.">المستند الصحيح يوفر<br>وقتًا ومشكلات.</h2></div><p data-ar="هذه أمثلة تعليمية عامة وليست قائمة إلزامية لكل شحنة؛ متطلبات المستندات تختلف حسب المنتج والدولة وطريقة الشحن." data-en="These are general educational examples, not a mandatory list for every shipment; requirements vary by product, country and shipping method.">هذه أمثلة تعليمية عامة وليست قائمة إلزامية لكل شحنة؛ متطلبات المستندات تختلف حسب المنتج والدولة وطريقة الشحن.</p></div>
   <div class="docsGrid">
-    <article class="doc reveal"><b>Commercial Invoice</b><p data-ar="تفاصيل البائع والمشتري والمنتج والكمية والقيمة وشروط البيع." data-en="Seller, buyer, product, quantity, value and sales terms.">تفاصيل البائع والمشتري والمنتج والكمية والقيمة وشروط البيع.</p><code>Invoice</code></article>
-    <article class="doc reveal"><b>Packing List</b><p data-ar="عدد الطرود، الوزن، الأبعاد ومحتويات الشحنة." data-en="Package count, weight, dimensions and shipment contents.">عدد الطرود، الوزن، الأبعاد ومحتويات الشحنة.</p><code>P/L</code></article>
-    <article class="doc reveal"><b>Certificate of Origin</b><p data-ar="بيان منشأ البضاعة وفق الجهة والإجراءات المطبقة." data-en="Evidence of goods' origin depending on applicable authority and procedure.">بيان منشأ البضاعة وفق الجهة والإجراءات المطبقة.</p><code>COO</code></article>
-    <article class="doc reveal"><b>Bill of Lading / AWB</b><p data-ar="مستند النقل البحري أو الجوي حسب وسيلة الشحن." data-en="Transport document for sea or air shipment, depending on mode.">مستند النقل البحري أو الجوي حسب وسيلة الشحن.</p><code>B/L • AWB</code></article>
+    <article class="doc reveal tilt" data-motion="flip"><b>Commercial Invoice</b><p data-ar="تفاصيل البائع والمشتري والمنتج والكمية والقيمة وشروط البيع." data-en="Seller, buyer, product, quantity, value and sales terms.">تفاصيل البائع والمشتري والمنتج والكمية والقيمة وشروط البيع.</p><code>Invoice</code></article>
+    <article class="doc reveal tilt" data-motion="flip"><b>Packing List</b><p data-ar="عدد الطرود، الوزن، الأبعاد ومحتويات الشحنة." data-en="Package count, weight, dimensions and shipment contents.">عدد الطرود، الوزن، الأبعاد ومحتويات الشحنة.</p><code>P/L</code></article>
+    <article class="doc reveal tilt" data-motion="flip"><b>Certificate of Origin</b><p data-ar="بيان منشأ البضاعة وفق الجهة والإجراءات المطبقة." data-en="Evidence of goods' origin depending on applicable authority and procedure.">بيان منشأ البضاعة وفق الجهة والإجراءات المطبقة.</p><code>COO</code></article>
+    <article class="doc reveal tilt" data-motion="flip"><b>Bill of Lading / AWB</b><p data-ar="مستند النقل البحري أو الجوي حسب وسيلة الشحن." data-en="Transport document for sea or air shipment, depending on mode.">مستند النقل البحري أو الجوي حسب وسيلة الشحن.</p><code>B/L • AWB</code></article>
   </div>
 </div></section>
 
@@ -441,7 +547,7 @@ addEventListener('resize',resize);resize();draw();
     function play(idx){
       clips.forEach((v,j)=>{v.classList.toggle('active',j===idx); if(j!==idx){v.pause();v.currentTime=0}});
       [...dots.children].forEach((d,j)=>d.classList.toggle('active',j===idx));
-      const v=clips[idx]; v.currentTime=0; v.play().catch(()=>{});
+      const v=clips[idx]; v.currentTime=0; stage.classList.add('has-video'); v.play().catch(()=>{});
       clearTimeout(window.__rowadClipTimer);
       window.__rowadClipTimer=setTimeout(()=>{i=(i+1)%clips.length;play(i)},5200);
     }
@@ -454,5 +560,68 @@ addEventListener('resize',resize);resize();draw();
 })();
 
 </script>
+
+<script>
+// V8 Motion Experience — techniques adapted from the uploaded GCC site's motion architecture.
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=matchMedia('(pointer:fine)').matches;
+  const cursor=document.getElementById('motionCursor');
+  if(fine && cursor && !reduce){
+    addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'},{passive:true});
+    document.querySelectorAll('a,button,.tilt,.galleryCard').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('big'))});
+  }
+
+  // cinematic intro wipe
+  const showroom=document.getElementById('showroom'),wipe=document.getElementById('sceneWipe');
+  if(showroom&&wipe&&!reduce){
+    const transitionOut=()=>{wipe.classList.add('on');setTimeout(()=>{showroom.classList.add('hide');setTimeout(()=>wipe.classList.remove('on'),520)},430)};
+    const skip=document.getElementById('skipIntro'); if(skip) skip.onclick=transitionOut;
+    setTimeout(transitionOut,5200);
+  }
+
+  // pointer parallax for hero
+  const hero=document.querySelector('.hero'); const heroCopy=document.querySelector('.heroCopy'); const heroVisual=document.querySelector('.heroVisual');
+  if(hero&&heroCopy&&heroVisual&&fine&&!reduce){
+    hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;heroCopy.style.transform=`translate3d(${x*-12}px,${y*-8}px,0)`;heroVisual.style.transform=`perspective(900px) rotateY(${x*5}deg) rotateX(${y*-4}deg) translate3d(${x*14}px,${y*8}px,0)`;heroVisual.style.setProperty('--mx',((x+.5)*100)+'%');heroVisual.style.setProperty('--my',((y+.5)*100)+'%')});
+    hero.addEventListener('pointerleave',()=>{heroCopy.style.transform='';heroVisual.style.transform=''})
+  }
+
+  // 3D tilt cards
+  if(fine&&!reduce){document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${y*-7}deg) translateY(-5px)`;card.style.setProperty('--mx',((x+.5)*100)+'%');card.style.setProperty('--my',((y+.5)*100)+'%')});card.addEventListener('pointerleave',()=>card.style.transform='')})}
+
+  // magnetic CTA
+  if(fine&&!reduce){document.querySelectorAll('.magnetic').forEach(btn=>{btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.16}px)`});btn.addEventListener('pointerleave',()=>btn.style.transform='')})}
+
+  // sticky story observer
+  const steps=[...document.querySelectorAll('.storyStep')],visual=document.getElementById('storyVisual'),bt=document.getElementById('storyBadgeTitle'),bx=document.getElementById('storyBadgeText');
+  const labels=[['SOURCE','Find the right product and supplier.'],['VERIFY','Review offer, documents and requirements.'],['MOVE','Choose the most practical logistics route.'],['CONNECT','Deliver the product into the target market.']];
+  if(steps.length&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=+e.target.dataset.step;steps.forEach((s,j)=>s.classList.toggle('active',i===j));if(visual)visual.classList.toggle('altOn',i%2===1);if(bt)bt.textContent=labels[i][0];if(bx)bx.textContent=labels[i][1]}}),{rootMargin:'-34% 0px -45% 0px',threshold:.05});steps.forEach(s=>io.observe(s))}
+
+  // gallery parallax on page scroll
+  const rail=document.getElementById('galleryRail'); if(rail&&!reduce){let raf=0;const move=()=>{raf=0;const sec=rail.closest('.motionGallery'),r=sec.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height)));const max=Math.max(0,rail.scrollWidth-innerWidth*.9);rail.style.transform=`translate3d(${-max*p*.72}px,0,0)`};addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(move)},{passive:true});move()}
+})();
+</script>
+
+
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.161.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canvas=document.getElementById('fxLogo'), logo=document.querySelector('.logo3d img'), showroom=document.getElementById('showroom');
+if(!reduce&&canvas&&logo&&showroom){
+ let renderer; try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:'high-performance'})}catch(e){}
+ if(renderer){
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.4)); const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(40,1,.1,100); camera.position.z=15;
+  const N=matchMedia('(max-width:700px)').matches?850:1500; const pos=new Float32Array(N*3), target=new Float32Array(N*3), rnd=new Float32Array(N);
+  for(let i=0;i<N;i++){const a=Math.random()*Math.PI*2,r=2.3*Math.sqrt(Math.random());target[i*3]=Math.cos(a)*r*1.15;target[i*3+1]=Math.sin(a)*r;target[i*3+2]=(Math.random()-.5)*.55;pos[i*3]=(Math.random()-.5)*12;pos[i*3+1]=(Math.random()-.5)*9;pos[i*3+2]=(Math.random()-.5)*8;rnd[i]=Math.random()}
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const mat=new THREE.PointsMaterial({color:0xe8c877,size:.055,transparent:true,opacity:.86,blending:THREE.AdditiveBlending,depthWrite:false}); const pts=new THREE.Points(geo,mat);scene.add(pts);
+  function resize(){const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()} resize();addEventListener('resize',resize);
+  const start=performance.now(); function frame(t){requestAnimationFrame(frame);const age=t-start;const mix=Math.min(1,Math.max(0,(age-350)/2300));const arr=geo.attributes.position.array;for(let i=0;i<N;i++){const j=i*3;const wob=Math.sin(t*.0015+rnd[i]*8)*.025;arr[j]+=(target[j]-arr[j])*.028;arr[j+1]+=(target[j+1]-arr[j+1])*.028+wob*.04;arr[j+2]+=(target[j+2]-arr[j+2])*.028}geo.attributes.position.needsUpdate=true;pts.rotation.y=t*.00012;pts.rotation.z=Math.sin(t*.0004)*.05;mat.opacity=.22+.7*mix;showroom.classList.toggle('particles',age<2700);renderer.render(scene,camera)} requestAnimationFrame(frame)
+ }
+}
+</script>
+
 </body>
 </html>

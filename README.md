@@ -1,16 +1,18 @@
-# Rowad Al Asema — V6 Cinematic Pro
+# Rowad Al Asema — V8 Motion Experience
 
-This update fixes the main issue in V5: fake-feeling image motion.
+Built from the rich Rowad V7 content, with motion techniques inspired by the uploaded GCC site while keeping a distinct trade identity.
 
-What changed:
-- Dubai scene redesigned as a TRUE multi-video cinematic player.
-- Supports separate clips for Burj Khalifa, Dubai Marina, cargo port and warehouse logistics.
-- Smooth cross-fade every ~5.2 seconds.
-- Graceful fallback to the existing local video/poster if the new clips are not uploaded yet.
-- New Dubai cinematic poster.
-- Stronger Dubai copy: City of Opportunity / Where the World Meets.
-- Keeps all rich V5 content: sectors, products, RFQ, knowledge hub, shipping comparisons, documents, office/warehouse, process, FAQ, contact.
+New in V8:
+- Three.js gold particle logo intro
+- Cinematic scene wipe transition
+- Mouse parallax in hero
+- 3D tilt cards and light sweep
+- Magnetic CTA buttons
+- Mixed reveal directions
+- Sticky scroll storytelling: SOURCE → VERIFY → MOVE → CONNECT
+- Scroll-driven cinematic gallery
+- Custom motion cursor on desktop
+- Reduced-motion/mobile safeguards
+- All existing trade content, RFQ, Knowledge Hub, Dubai, shipping, documents, office, FAQ retained
 
-See `VIDEO-SOURCES.md` for the four selected Pexels clips and exact filenames.
-
-Upload the complete contents to the same GitHub repository. Vercel will redeploy automatically.
+Upload index.html + README.md + VIDEO-SOURCES.md + full assets folder to GitHub.
