@@ -1,0 +1,18 @@
+{
+  "asset_refs": [
+    "hero-logistics.png",
+    "logistics.png",
+    "logo-icon.png",
+    "office-entrance.jpg",
+    "office.jpg",
+    "rowad-showreel.mp4",
+    "sector-auto.jpg",
+    "sector-building.jpg",
+    "sector-electronics.jpg",
+    "sector-food.jpg",
+    "warehouse.jpg"
+  ],
+  "missing_assets": [],
+  "duplicate_ids": [],
+  "html_size_kb": 56.5
+}
