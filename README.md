@@ -1,18 +1,17 @@
-# Rowad Al Asema — V8 Motion Experience
+# Rowad Al Asema — V9 Clean Motion
 
-Built from the rich Rowad V7 content, with motion techniques inspired by the uploaded GCC site while keeping a distinct trade identity.
+هذه النسخة تعالج الأخطاء التي ظهرت في V8 قبل الرفع:
 
-New in V8:
-- Three.js gold particle logo intro
-- Cinematic scene wipe transition
-- Mouse parallax in hero
-- 3D tilt cards and light sweep
-- Magnetic CTA buttons
-- Mixed reveal directions
-- Sticky scroll storytelling: SOURCE → VERIFY → MOVE → CONNECT
-- Scroll-driven cinematic gallery
-- Custom motion cursor on desktop
-- Reduced-motion/mobile safeguards
-- All existing trade content, RFQ, Knowledge Hub, Dubai, shipping, documents, office, FAQ retained
+- كل قطاع أصبح له صورة مستقلة صحيحة، ولا توجد صورة Collage مكررة داخل جميع المنتجات.
+- أزيل Blur من Scroll Reveal حتى لا يبقى النص أو الصور غير واضحة.
+- معرض الصور أعيد ترتيبه: كل صورة مرتبطة بالعنوان الصحيح.
+- قسم المكتب أصبح يستخدم صورًا مستقلة للمكتب والمدخل والمخزن بدل صورة مركبة واحدة في مكان غير مناسب.
+- حركة الدخول أخف وأكثر ثباتًا، مع fallback يظهر العناصر تلقائيًا إذا لم يعمل IntersectionObserver كما هو متوقع.
+- تم تقليل 3D tilt حتى لا تتشوه البطاقات أو النصوص.
+- نسخة الموبايل تمنع تحريك الـgallery خارج الشاشة.
+- لا توجد صور Mockup لموقع داخل الخلفيات.
 
-Upload index.html + README.md + VIDEO-SOURCES.md + full assets folder to GitHub.
+مهم: ارفع index.html + README.md + VIDEO-SOURCES.md + assets بالكامل على GitHub.
+
+- معرض الصور أصبح Grid ثابتًا متحركًا بالدخول والـhover بدل Rail أفقي كان قد يزيح الصور من أماكنها.
+- جميع مراجع الملفات داخل HTML موجودة فعليًا داخل الحزمة؛ لا توجد فيديوهات placeholder مفقودة.

@@ -181,7 +181,7 @@ body{cursor:default}
 .showroom .logo3d{animation:none;transform:translateX(-50%) rotateY(0deg) translateZ(30px)}
 .showroom #fxLogo{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:none}
 .showroom .logo3d img{transition:opacity .55s ease,filter .55s ease}
-.showroom.particles .logo3d img{opacity:.08;filter:blur(1px)}
+.showroom.particles .logo3d img{opacity:.10;filter:none}
 .stageAura{position:absolute;left:50%;top:82px;transform:translateX(-50%);width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(212,170,80,.15),transparent 63%);filter:blur(14px);animation:auraPulse 2.8s ease-in-out infinite}
 @keyframes auraPulse{50%{transform:translateX(-50%) scale(1.08);opacity:.65}}
 
@@ -192,7 +192,7 @@ body{cursor:default}
 .heroVisual:before{content:"";position:absolute;inset:-1px;z-index:3;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx) var(--my),rgba(240,212,147,.22),transparent 28%);mix-blend-mode:screen;opacity:.8}
 .hero h1 span{display:block;transform-origin:bottom right}
 .hero h1 .wordIn{animation:wordIn .9s cubic-bezier(.16,.84,.25,1) both}
-@keyframes wordIn{from{opacity:0;transform:translateY(70px) rotateX(-18deg);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes wordIn{from{opacity:0;transform:translateY(44px) rotateX(-8deg)}to{opacity:1;transform:none}}
 .hero h1 span:nth-child(2){animation-delay:.12s}.hero h1 span:nth-child(3){animation-delay:.24s}
 
 /* cinematic transition panels */
@@ -246,6 +246,100 @@ body{cursor:default}
 @media(max-width:950px){.storyGrid{grid-template-columns:1fr}.storySticky{position:relative;top:auto;min-height:420px}.storySteps{gap:30px;padding-bottom:30px}.motionStats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.motionCursor{display:none}.galleryCard{height:420px}.motionStats{grid-template-columns:1fr}.story{padding:80px 0}.storySticky{min-height:350px}}
 @media(prefers-reduced-motion:reduce){.sceneWipe,.motionCursor{display:none!important}.galleryRail{transform:none!important}}
+
+/* ==========================================================
+   V9 CLEAN MOTION — layout/image correctness fixes
+   ========================================================== */
+.reveal,
+.reveal[data-motion="left"],
+.reveal[data-motion="right"],
+.reveal[data-motion="scale"],
+.reveal[data-motion="flip"]{
+  opacity:0;
+  filter:none !important;
+}
+.reveal{transform:translateY(28px)}
+.reveal[data-motion="left"]{transform:translateX(-36px)}
+.reveal[data-motion="right"]{transform:translateX(36px)}
+.reveal[data-motion="scale"]{transform:scale(.96)}
+.reveal[data-motion="flip"]{transform:perspective(900px) rotateX(7deg) translateY(24px)}
+.reveal.on{opacity:1;transform:none!important;filter:none!important}
+.maskLine > span{filter:none!important}
+
+/* Never blur actual content while scrolling. */
+.light .head,.light .compare,.officeGrid,.motionGallery,.sectorsGrid{filter:none!important}
+
+/* Sector cards now use one dedicated image per sector — never the collage. */
+.sector .photo{height:250px;background:#ece8de}
+.sector .photo img{object-position:center!important;transform:none}
+.sector:hover .photo img{transform:scale(1.035)}
+.sectorBody{min-height:245px;display:flex;flex-direction:column}
+.sectorBody .chipRow{margin-top:auto;padding-top:16px}
+
+/* Stable shipping cards, no motion blur or overlap. */
+.compare{align-items:stretch}
+.compareCard{height:100%;transform:none}
+.compareCard.reveal{transform:translateY(24px)}
+.compareCard.reveal.on{transform:none}
+
+/* Clean gallery — correct image/subject relationship and no forced blur. */
+.motionGallery{overflow:hidden}
+.galleryRail{align-items:stretch;padding:4px 0 18px}
+.galleryCard{width:min(360px,75vw);height:470px;background:#0b1725}
+.galleryCard img{object-position:center;filter:none!important}
+.galleryCard strong{font-size:20px;line-height:1.2;text-shadow:0 2px 15px rgba(0,0,0,.45)}
+.galleryCard small{position:absolute;z-index:2;bottom:58px;left:24px;right:24px;color:#d5dde6;font-size:12px}
+
+/* Office area uses clean separate images rather than a single collage. */
+.officePhoto{min-height:560px}
+.officePhoto img{filter:none!important}
+.officeMosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.officeMini{position:relative;border-radius:22px;overflow:hidden;min-height:230px;border:1px solid var(--line)}
+.officeMini img{width:100%;height:100%;object-fit:cover}
+.officeMini:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(3,8,15,.75))}
+.officeMini b{position:absolute;z-index:2;bottom:16px;right:16px;color:#fff}
+
+/* Keep headings and following sections separated. */
+section{scroll-margin-top:90px}
+.head{position:relative;z-index:3}
+.story + .motionGallery,.motionGallery + .light{margin-top:0}
+
+/* Reduce overly aggressive 3D tilt so text remains legible. */
+.tilt{transform-style:preserve-3d}
+.tilt:hover{z-index:4}
+
+/* Mobile: no horizontal offset that can put images in wrong places. */
+@media(max-width:650px){
+  .reveal[data-motion="left"],.reveal[data-motion="right"]{transform:translateY(22px)}
+  .sectorsGrid{grid-template-columns:1fr}
+  .sector .photo{height:230px}
+  .sectorBody{min-height:0}
+  .galleryRail{transform:none!important;overflow-x:auto;width:100%;scroll-snap-type:x mandatory;padding-bottom:12px}
+  .galleryCard{scroll-snap-align:center;width:84vw;min-width:84vw;height:410px}
+  .officeMosaic{grid-template-columns:1fr}
+}
+
+
+/* V9 gallery stability: animated grid, not a rail that can slide images into wrong positions */
+.galleryRail{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+  transform:none!important;
+  direction:rtl!important;
+}
+.galleryCard{
+  width:auto!important;
+  height:390px!important;
+  min-width:0!important;
+}
+.galleryCard:nth-child(2),.galleryCard:nth-child(5){height:455px!important}
+.galleryCard:nth-child(3n+1){transform:translateY(18px)}
+.galleryCard:hover{transform:translateY(-7px)!important}
+@media(max-width:900px){.galleryRail{grid-template-columns:repeat(2,minmax(0,1fr))!important}.galleryCard,.galleryCard:nth-child(2),.galleryCard:nth-child(5){height:380px!important}}
+@media(max-width:650px){.galleryRail{display:grid!important;grid-template-columns:1fr!important;overflow:visible!important}.galleryCard,.galleryCard:nth-child(2),.galleryCard:nth-child(5){width:100%!important;min-width:0!important;height:330px!important;transform:none!important}}
+
 </style>
 </head>
 <body><div class="motionCursor" id="motionCursor"></div><div class="sceneWipe" id="sceneWipe"><i></i><i></i><i></i><i></i><i></i></div>
@@ -299,11 +393,9 @@ body{cursor:default}
 <section class="dubaiFilm" id="dubai">
   <div class="cineStage" id="cineStage">
     <img class="posterFallback" src="assets/hero-logistics.png" alt="Dubai logistics cinematic backdrop">
-    <video muted playsinline preload="metadata" data-label="BURJ KHALIFA"><source src="assets/dubai-burj.mp4" type="video/mp4"></video>
-    <video muted playsinline preload="metadata" data-label="DUBAI MARINA"><source src="assets/dubai-marina.mp4" type="video/mp4"></video>
-    <video muted playsinline preload="metadata" data-label="GLOBAL TRADE"><source src="assets/cargo-port.mp4" type="video/mp4"></video>
-    <video muted playsinline preload="metadata" data-label="LOGISTICS"><source src="assets/warehouse-logistics.mp4" type="video/mp4"></video>
-    <video muted playsinline preload="metadata" data-fallback="1" data-label="ROWAD"><source src="assets/rowad-showreel.mp4" type="video/mp4"></video>
+    <video class="active" autoplay muted loop playsinline preload="metadata" poster="assets/hero-logistics.png">
+      <source src="assets/rowad-showreel.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="cityCopy reveal">
     <div class="kicker">THE CITY OF OPPORTUNITY</div>
@@ -327,10 +419,10 @@ body{cursor:default}
 <section class="light" id="sectors"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="القطاعات والمنتجات" data-en="SECTORS & PRODUCTS">القطاعات والمنتجات</div><h2 data-ar="مجالات متعددة.<br>منصة تجارية واحدة." data-en="Multiple sectors.<br>One trading platform.">مجالات متعددة.<br>منصة تجارية واحدة.</h2></div><p data-ar="أمثلة توضيحية على الفئات التي يمكن أن تخدمها شركة تجارة عامة. يتم تحديد المنتجات الفعلية والتوفر والمواصفات حسب طلب العميل." data-en="Illustrative categories a general trading company can serve. Actual products, availability and specifications are confirmed per inquiry.">أمثلة توضيحية على الفئات التي يمكن أن تخدمها شركة تجارة عامة. يتم تحديد المنتجات الفعلية والتوفر والمواصفات حسب طلب العميل.</p></div>
   <div class="sectorsGrid">
-    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="قطع غيار السيارات" data-en="Automotive Parts">قطع غيار السيارات</h3><p data-ar="فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة." data-en="Filters, consumables, automotive electrical parts, accessories and specification-based components.">فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة.</p><div class="chipRow"><span class="chip">Filters</span><span class="chip">Electrical</span><span class="chip">Accessories</span></div></div></article>
-    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الإلكترونيات والأجهزة" data-en="Electronics & Appliances">الإلكترونيات والأجهزة</h3><p data-ar="أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات." data-en="Electronic devices, accessories, home and technology solutions subject to market and compliance requirements.">أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات.</p><div class="chipRow"><span class="chip">Electronics</span><span class="chip">Accessories</span><span class="chip">Appliances</span></div></div></article>
-    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="الأغذية والسلع الاستهلاكية" data-en="Food & FMCG">الأغذية والسلع الاستهلاكية</h3><p data-ar="منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية." data-en="Packaged foods and consumer goods, taking origin, registration and local requirements into account.">منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية.</p><div class="chipRow"><span class="chip">FMCG</span><span class="chip">Packaged Food</span><span class="chip">Consumer Goods</span></div></div></article>
-    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sectors-collage.png" alt=""></div><div class="sectorBody"><h3 data-ar="مواد ومستلزمات البناء" data-en="Building Materials">مواد ومستلزمات البناء</h3><p data-ar="مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية." data-en="Project supplies, components and diversified sourcing based on specification and quantity.">مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية.</p><div class="chipRow"><span class="chip">Materials</span><span class="chip">Hardware</span><span class="chip">Project Supply</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sector-auto.jpg" alt=""></div><div class="sectorBody"><h3 data-ar="قطع غيار السيارات" data-en="Automotive Parts">قطع غيار السيارات</h3><p data-ar="فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة." data-en="Filters, consumables, automotive electrical parts, accessories and specification-based components.">فلاتر، قطع استهلاكية، كهرباء سيارات، إكسسوارات ومكونات حسب المواصفات المطلوبة.</p><div class="chipRow"><span class="chip">Filters</span><span class="chip">Electrical</span><span class="chip">Accessories</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sector-electronics.jpg" alt=""></div><div class="sectorBody"><h3 data-ar="الإلكترونيات والأجهزة" data-en="Electronics & Appliances">الإلكترونيات والأجهزة</h3><p data-ar="أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات." data-en="Electronic devices, accessories, home and technology solutions subject to market and compliance requirements.">أجهزة إلكترونية، ملحقات، حلول منزلية وتقنية بحسب السوق والاعتمادات.</p><div class="chipRow"><span class="chip">Electronics</span><span class="chip">Accessories</span><span class="chip">Appliances</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sector-food.jpg" alt=""></div><div class="sectorBody"><h3 data-ar="الأغذية والسلع الاستهلاكية" data-en="Food & FMCG">الأغذية والسلع الاستهلاكية</h3><p data-ar="منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية." data-en="Packaged foods and consumer goods, taking origin, registration and local requirements into account.">منتجات معبأة وسلع استهلاكية مع مراعاة بلد المنشأ والتسجيل والمتطلبات المحلية.</p><div class="chipRow"><span class="chip">FMCG</span><span class="chip">Packaged Food</span><span class="chip">Consumer Goods</span></div></div></article>
+    <article class="sector reveal tilt" data-motion="flip"><div class="photo"><img src="assets/sector-building.jpg" alt=""></div><div class="sectorBody"><h3 data-ar="مواد ومستلزمات البناء" data-en="Building Materials">مواد ومستلزمات البناء</h3><p data-ar="مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية." data-en="Project supplies, components and diversified sourcing based on specification and quantity.">مستلزمات ومكونات مشاريع ومصادر توريد متنوعة حسب المواصفات والكمية.</p><div class="chipRow"><span class="chip">Materials</span><span class="chip">Hardware</span><span class="chip">Project Supply</span></div></div></article>
   </div>
 </div></section>
 
@@ -400,12 +492,23 @@ body{cursor:default}
 </div></section>
 
 
-<section class="motionGallery"><div class="wrap"><div class="head reveal" data-motion="right"><div><div class="kicker" data-ar="مشاهد من عالم التجارة" data-en="TRADE IN MOTION">مشاهد من عالم التجارة</div><h2 data-ar="المنتج يتحرك.<br>والسوق لا ينتظر." data-en="Products move.<br>Markets do not wait.">المنتج يتحرك.<br>والسوق لا ينتظر.</h2></div><p data-ar="معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة." data-en="A scroll-driven gallery that adds cinematic motion without trapping the user in an awkward horizontal scroll.">معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة.</p></div></div><div class="galleryRail" id="galleryRail"><article class="galleryCard"><img src="assets/logistics.png" alt="Dubai logistics"><strong>DUBAI / GLOBAL TRADE</strong></article><article class="galleryCard"><img src="assets/products-collage.png" alt="Products"><strong>PRODUCT / SOURCING</strong></article><article class="galleryCard"><img src="assets/office-warehouse.png" alt="Warehouse"><strong>WAREHOUSE / DISTRIBUTION</strong></article><article class="galleryCard"><img src="assets/sectors-collage.png" alt="Sectors"><strong>SECTORS / OPPORTUNITY</strong></article></div></section>
+<section class="motionGallery"><div class="wrap"><div class="head reveal" data-motion="right"><div><div class="kicker" data-ar="مشاهد من عالم التجارة" data-en="TRADE IN MOTION">مشاهد من عالم التجارة</div><h2 data-ar="المنتج يتحرك.<br>والسوق لا ينتظر." data-en="Products move.<br>Markets do not wait.">المنتج يتحرك.<br>والسوق لا ينتظر.</h2></div><p data-ar="معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة." data-en="A scroll-driven gallery that adds cinematic motion without trapping the user in an awkward horizontal scroll.">معرض أفقي يتحرك مع النزول ليعطي إحساسًا سينمائيًا دون أن يحبس المستخدم في حركة مزعجة.</p></div></div><div class="galleryRail" id="galleryRail">
+<article class="galleryCard"><img src="assets/hero-logistics.png" alt="Dubai global trade"><small>PORT • AIR • ROAD</small><strong>DUBAI / GLOBAL TRADE</strong></article>
+<article class="galleryCard"><img src="assets/sector-auto.jpg" alt="Automotive parts"><small>FILTERS • ELECTRICAL • COMPONENTS</small><strong>AUTOMOTIVE PARTS</strong></article>
+<article class="galleryCard"><img src="assets/sector-electronics.jpg" alt="Electronics"><small>APPLIANCES • DEVICES • ACCESSORIES</small><strong>ELECTRONICS</strong></article>
+<article class="galleryCard"><img src="assets/sector-food.jpg" alt="Food and FMCG"><small>FOOD • FMCG • CONSUMER GOODS</small><strong>FOOD & FMCG</strong></article>
+<article class="galleryCard"><img src="assets/sector-building.jpg" alt="Building materials"><small>MATERIALS • HARDWARE • PROJECT SUPPLY</small><strong>BUILDING MATERIALS</strong></article>
+<article class="galleryCard"><img src="assets/warehouse.jpg" alt="Warehouse and distribution"><small>STORAGE • DISTRIBUTION • DELIVERY</small><strong>WAREHOUSE / DISTRIBUTION</strong></article>
+</div></section>
 <section id="office"><div class="wrap">
   <div class="head reveal"><div><div class="kicker" data-ar="من نحن" data-en="OUR PRESENCE">من نحن</div><h2 data-ar="وجود فعلي وهوية<br>واضحة في دبي." data-en="A real presence and<br>clear identity in Dubai.">وجود فعلي وهوية<br>واضحة في دبي.</h2></div><p data-ar="الموقع لا يكتفي بصور عامة؛ نعرض أيضًا بيئة المكتب والمخزن لإعطاء الزائر صورة أوضح عن هوية الشركة." data-en="The site goes beyond generic imagery and also presents the office and warehouse environment for a clearer company identity.">الموقع لا يكتفي بصور عامة؛ نعرض أيضًا بيئة المكتب والمخزن لإعطاء الزائر صورة أوضح عن هوية الشركة.</p></div>
   <div class="officeGrid">
-    <div class="officePhoto reveal tilt" data-motion="left"><img src="assets/office-warehouse.png" alt="Office and warehouse"><div class="officeCopy"><h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3><p data-ar="صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع." data-en="A visual representation of the office, warehouse and sourcing/distribution operations.">صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع.</p></div></div>
+    <div class="officePhoto reveal tilt" data-motion="left"><img src="assets/office.jpg" alt="Rowad Al Asema office"><div class="officeCopy"><h3 data-ar="المكتب الإداري والمخزن" data-en="Office & Warehouse">المكتب الإداري والمخزن</h3><p data-ar="صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع." data-en="A visual representation of the office, warehouse and sourcing/distribution operations.">صورة توضيحية لهوية المكتب والمخزن والعمليات المرتبطة بالتوريد والتوزيع.</p></div></div>
     <div class="officeSide">
+      <div class="officeMosaic reveal" data-motion="right">
+        <div class="officeMini"><img src="assets/office-entrance.jpg" alt="Office entrance"><b data-ar="مدخل المكتب" data-en="Office Entrance">مدخل المكتب</b></div>
+        <div class="officeMini"><img src="assets/warehouse.jpg" alt="Warehouse"><b data-ar="المخزن والتوزيع" data-en="Warehouse & Distribution">المخزن والتوزيع</b></div>
+      </div>
       <div class="infoCard reveal tilt" data-motion="right"><strong>Dubai</strong><div><h3 data-ar="مركز تجاري ولوجستي" data-en="Commercial & logistics hub">مركز تجاري ولوجستي</h3><p data-ar="موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية." data-en="A location that supports access to suppliers, clients and regional shipping routes.">موقع يساعد على الوصول إلى الموردين والعملاء ومسارات الشحن الإقليمية.</p></div></div>
       <div class="infoCard reveal tilt" data-motion="right"><strong>RFQ</strong><div><h3 data-ar="طلب عرض منظم" data-en="Structured RFQ">طلب عرض منظم</h3><p data-ar="نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة." data-en="We ask for clear specifications, quantity and destination so offers are practical and comparable.">نطلب مواصفات وكمية ووجهة واضحة حتى يكون العرض عمليًا وقابلًا للمقارنة.</p></div></div>
     </div>
@@ -483,8 +586,10 @@ $('#lang').onclick=()=>{
 };
 
 // reveal
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
-$$('.reveal').forEach(el=>obs.observe(el));
+const revealEls=$$('.reveal');
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+revealEls.forEach(el=>{obs.observe(el); if(el.getBoundingClientRect().top<innerHeight*1.05) el.classList.add('on')});
+setTimeout(()=>revealEls.forEach(el=>el.classList.add('on')),2200);
 
 // scroll UI
 function scrollUI(){
@@ -530,34 +635,7 @@ function resize(){c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devic
 function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of pts){p.y-=p.v;if(p.y<-3){p.y=innerHeight+3;p.x=Math.random()*innerWidth}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(240,212,147,.20)';ctx.fill()}requestAnimationFrame(draw)}
 addEventListener('resize',resize);resize();draw();
 
-// V6 cinematic playlist: uses real clips when present, otherwise falls back gracefully.
-(function(){
-  const stage=document.getElementById('cineStage');
-  const dots=document.getElementById('cineDots');
-  if(!stage||!dots) return;
-  const all=[...stage.querySelectorAll('video')];
-  const usable=[];
-  let pending=all.length;
-  const finish=()=>{
-    if(--pending>0) return;
-    const clips=usable.length?usable:all.filter(v=>v.dataset.fallback==="1");
-    clips.forEach((v,i)=>{const d=document.createElement('i');if(i===0)d.classList.add('active');dots.appendChild(d)});
-    if(!clips.length) return;
-    let i=0;
-    function play(idx){
-      clips.forEach((v,j)=>{v.classList.toggle('active',j===idx); if(j!==idx){v.pause();v.currentTime=0}});
-      [...dots.children].forEach((d,j)=>d.classList.toggle('active',j===idx));
-      const v=clips[idx]; v.currentTime=0; stage.classList.add('has-video'); v.play().catch(()=>{});
-      clearTimeout(window.__rowadClipTimer);
-      window.__rowadClipTimer=setTimeout(()=>{i=(i+1)%clips.length;play(i)},5200);
-    }
-    play(0);
-  };
-  all.forEach(v=>{
-    const src=v.querySelector('source')?.getAttribute('src');
-    fetch(src,{method:'HEAD'}).then(r=>{if(r.ok)usable.push(v)}).catch(()=>{}).finally(finish);
-  });
-})();
+
 
 </script>
 
@@ -597,9 +675,6 @@ addEventListener('resize',resize);resize();draw();
   const steps=[...document.querySelectorAll('.storyStep')],visual=document.getElementById('storyVisual'),bt=document.getElementById('storyBadgeTitle'),bx=document.getElementById('storyBadgeText');
   const labels=[['SOURCE','Find the right product and supplier.'],['VERIFY','Review offer, documents and requirements.'],['MOVE','Choose the most practical logistics route.'],['CONNECT','Deliver the product into the target market.']];
   if(steps.length&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=+e.target.dataset.step;steps.forEach((s,j)=>s.classList.toggle('active',i===j));if(visual)visual.classList.toggle('altOn',i%2===1);if(bt)bt.textContent=labels[i][0];if(bx)bx.textContent=labels[i][1]}}),{rootMargin:'-34% 0px -45% 0px',threshold:.05});steps.forEach(s=>io.observe(s))}
-
-  // gallery parallax on page scroll
-  const rail=document.getElementById('galleryRail'); if(rail&&!reduce){let raf=0;const move=()=>{raf=0;const sec=rail.closest('.motionGallery'),r=sec.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height)));const max=Math.max(0,rail.scrollWidth-innerWidth*.9);rail.style.transform=`translate3d(${-max*p*.72}px,0,0)`};addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(move)},{passive:true});move()}
 })();
 </script>
 
